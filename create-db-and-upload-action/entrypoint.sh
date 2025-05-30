@@ -41,7 +41,7 @@ if [ ! -z "$gpg_key" ]; then
     do
         gpg --detach-sig --yes $name
     done
-    repo-add "./${repo_name:?}.db.tar.gz" ./*.tar.zst
+    repo-add --verify --sign "./${repo_name:?}.db.tar.gz" ./*.tar.zst
 fi
 
 echo "::endgroup::" 
