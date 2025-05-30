@@ -11,20 +11,20 @@ Add the following code snippet to your `/etc/pacman.conf` (choose one):
 ```
 # Download from OneDrive
 [vifly]
-Server = https://archrepo.viflythink.com
+Server = https://pan.anlor.top/d/archrepo
 ```
 
 ```
 # Download from GitHub releases
 [vifly]
-Server = https://github.com/vifly/arch-build/releases/latest/download
+Server = https://github.com/chenxiex/arch-build/releases/latest/download
 ```
 
 And import my pubkey:
 
 ```Bash
-wget -O /tmp/vifly-repo.key 'https://share.viflythink.com/arch-repo.key' && sudo pacman-key --add /tmp/vifly-repo.key
-sudo pacman-key --lsign-key viflythink@gmail.com
+wget -O /tmp/anlorsp.asc 'https://pan.anlor.top/d/archrepo/anlorsp.asc' && sudo pacman-key --add /tmp/anlorsp.asc
+sudo pacman-key --lsign-key chenxiex@outlook.com
 ```
 
 Then, run `sudo pacman -Syu` to update the repository and upgrade the system.
