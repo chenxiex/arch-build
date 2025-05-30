@@ -12,7 +12,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: ["termius-deb", "visual-studio-code-bin", "all-ways-egpu-git", "howdy-beta-git", "genymotion", "lx-music", "qtscrcpy", "setpl-git"]
+        repos: ["termius-deb", "electron21-bin", "visual-studio-code-bin", "all-ways-egpu-git", "howdy-beta-git", "genymotion", "lx-music", "qtscrcpy", "setpl-git", "vmware-workstation", "vmware-keymaps"]
         include:
           - preinstall-pkgs: ""
 
@@ -30,7 +30,7 @@ jobs:
     
     - uses: actions/upload-artifact@v4
       with:
-        path: ./*/*.pkg.tar.zst
+        path: ./pikaur/pkg/*.pkg.tar.zst
         name: ${{ matrix.repos }}
         if-no-files-found: error
         
@@ -38,7 +38,7 @@ jobs:
       with:
         allowUpdates: true
         tag: "packages"
-        artifacts: "./*/*.zst"
+        artifacts: "./pikaur/pkg/*.zst"
         token: ${{ secrets.GITHUB_TOKEN }}
           
   uploadToOneDrive:      
