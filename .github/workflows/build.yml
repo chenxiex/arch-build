@@ -3,18 +3,15 @@ name: BUILD
 on:
   push:
   schedule:
-    - cron:  '1 */8 * * *'
+    - cron:  '1 2 * * *'
 
 jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: [osu-lazer, weechat-notify-send, fpp, redsocks, git-cola, realesrgan-ncnn-vulkan, python-torchaudio, python-torchinfo, python-rapidocr-onnxruntime, darkly]
+        repos: ["termius-deb", "visual-studio-code-bin"]
         include:
-          - repos: git-cola
-            preinstall-pkgs: "at-spi2-core"
-          - repos: realesrgan-ncnn-vulkan
-            preinstall-pkgs: "vulkan-intel"
+          - preinstall-pkgs: ""
 
       fail-fast: false
       
@@ -58,9 +55,9 @@ jobs:
       - uses: ./create-db-and-upload-action
         with:
           RCLONE_CONFIG_CONTENT: ${{ secrets.RCLONE_CONFIG }}
-          RCLONE_CONFIG_NAME: onedrive
-          dest_path: /archrepo
-          repo_name: vifly
+          RCLONE_CONFIG_NAME: ${{ secrets.RCLONE_CONFIG_NAME }}
+          dest_path: /Public/archrepo
+          repo_name: anlorsp
           gpg-privatekey: ${{ secrets.gpg_private_key }}
           local_path: ${{ steps.download.outputs.download-path }}
 
