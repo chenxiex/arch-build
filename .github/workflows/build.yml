@@ -4,9 +4,10 @@ on:
   push:
     paths:
       - '**'
-      - '!/README.md'
+      - '!README.md'
   schedule:
     - cron:  '1 2 * * *'
+  workflow_dispatch:
 
 jobs:
   buildAUR:
