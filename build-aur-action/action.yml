@@ -13,5 +13,7 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  env:
+    INPUTS_PREINSTALLPKGS: ${{ inputs.preinstallPkgs }}
   args:
     - ${{ inputs.repo-name }}

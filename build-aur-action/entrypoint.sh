@@ -8,8 +8,8 @@ useradd builder -m
 echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 chmod -R a+rw .
 
-if [ ! -z "$INPUT_PREINSTALLPKGS" ]; then
-    sudo --set-home -u builder pikaur-static -Syu --noconfirm "$INPUT_PREINSTALLPKGS"
+if [ ! -z "$INPUTS_PREINSTALLPKGS" ]; then
+    sudo --set-home -u builder pikaur-static -Syu --noconfirm "$INPUTS_PREINSTALLPKGS"
 fi
 
 sudo --set-home -u builder pikaur-static -Sw --noconfirm --xdg-cache-home=./ "$pkgname"
