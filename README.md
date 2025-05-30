@@ -10,13 +10,13 @@ Add the following code snippet to your `/etc/pacman.conf` (choose one):
 
 ```
 # Download from OneDrive
-[vifly]
+[anlorsp]
 Server = https://pan.anlor.top/d/archrepo
 ```
 
 ```
 # Download from GitHub releases
-[vifly]
+[anlorsp]
 Server = https://github.com/chenxiex/arch-build/releases/latest/download
 ```
 
