@@ -11,6 +11,7 @@ Add the following code snippet to your `/etc/pacman.conf` (choose one):
 ```
 # Download from OneDrive
 [anlorsp]
+SigLevel = DatabaseNever # Optional but recommended. This server behaves badly when providing database signature file.
 Server = https://pan.anlor.top/d/archrepo
 ```
 
