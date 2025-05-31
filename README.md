@@ -11,9 +11,10 @@ Add the following code snippet to your `/etc/pacman.conf` (choose one):
 ```
 # Download from OneDrive
 [anlorsp]
-SigLevel = DatabaseNever # Optional but recommended. This server behaves badly when providing database signature file.
 Server = https://pan.anlor.top/d/archrepo
 ```
+
+It is recommended to use wget or curl as the downloader of pacman when using this server, or sig files may be broken. You can configure this by the `XferCommand` option in `pacman.conf`.
 
 ```
 # Download from GitHub releases
