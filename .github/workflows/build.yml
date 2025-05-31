@@ -8,9 +8,23 @@ on:
   schedule:
     - cron:  '1 2 * * *'
   workflow_dispatch:
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/build-aur-action-image
 
 jobs:
+  buildAURImage:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: ./build-aur-action-image
+
   buildAUR:
+    needs: [buildAURImage]
     strategy:
       matrix:
         repos: ["termius-deb", "visual-studio-code-bin", "all-ways-egpu-git", "howdy-beta-git", "genymotion", "lx-music", "qtscrcpy", "setpl-git", "vmware-workstation"]
@@ -25,10 +39,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - uses: ./build-aur-action
-      with:
-        repo-name: ${{ matrix.repos }}
-        preinstallPkgs: ${{ matrix.preinstall-pkgs }}
+    - run: |
+        docker run --rm -e "PREINSTALL_PKGS=${{ matrix.preinstall-pkgs }}" ${{env.REGISTRY}}/${{env.IMAGE_NAME}} ${{ matrix.repos }} 
     
     - uses: actions/upload-artifact@v4
       with:
