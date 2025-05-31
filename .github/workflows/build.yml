@@ -8,6 +8,7 @@ on:
   schedule:
     - cron:  '1 2 * * *'
   workflow_dispatch:
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/build-aur-action-image
@@ -79,8 +80,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - run: |
-        docker run --rm -e "PREINSTALL_PKGS=${{ matrix.preinstall-pkgs }}" ${{env.REGISTRY}}/${{env.IMAGE_NAME}} ${{ matrix.repos }} 
+    - uses: ./build-aur-action-image
+      with:
+        repo-name: ${{ matrix.repos }}
+        preinstallPkgs: ${{ matrix.preinstall-pkgs }}
     
     - uses: actions/upload-artifact@v4
       with:
