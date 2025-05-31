@@ -10,17 +10,9 @@ inputs:
     description: 'packages need install before build, separated by space'
     required: false
     default: ""
-  registry:
-    description: 'Docker registry to pull the image'
-    required: false
-    default: 'ghcr.io'
-  image-name:
-    description: 'Docker image name to pull'
-    required: false
-    default: 'chenxiex/arch-build/build-aur-action-image'
 runs:
   using: 'docker'
-  image: "${{inputs.registry}}/${{inputs.image-name}}:latest"
+  image: "ghcr.io/chenxiex/arch-build/build-aur-action-image:latest"
   env:
     INPUTS_PREINSTALLPKGS: ${{ inputs.preinstallPkgs }}
   args:
