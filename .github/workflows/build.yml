@@ -67,7 +67,7 @@ jobs:
         with:
           RCLONE_CONFIG_CONTENT: ${{ secrets.RCLONE_CONFIG }}
           RCLONE_CONFIG_NAME: ${{ secrets.RCLONE_CONFIG_NAME }}
-          dest_path: /Public/archrepo
+          dest_path: ${{ vars.REMOTE_PATH }}
           repo_name: ${{ vars.REPO_NAME }}
           gpg-privatekey: ${{ secrets.gpg_private_key }}
           local_path: ${{ steps.download.outputs.download-path }}
