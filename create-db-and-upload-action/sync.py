@@ -111,7 +111,7 @@ def download_local_miss_files(
     old_files = [i.filename for i in old_packages]
     remote_new_files = [i for i in remote_files if i not in old_files]
     for r in remote_new_files:
-        if r not in local_files and ".db" not in r and ".files" not in r and ".pkg.tar" not in r:
+        if r not in local_files and ".db" not in r and ".files" not in r:
             with suppress(RuntimeError):
                 rclone_download(r)
 
