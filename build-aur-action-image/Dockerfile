@@ -15,5 +15,6 @@ RUN VERSION=$(curl -s "https://api.github.com/repos/actionless/pikaur/releases/l
 
 RUN useradd builder -m
 RUN echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+RUN git config --global --add safe.directory /workspace
 
 ENTRYPOINT ["/entrypoint.sh"] 
