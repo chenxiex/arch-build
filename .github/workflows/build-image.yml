@@ -3,8 +3,8 @@ name: Build AUR Action Image
 on:
   push:
     paths:
-      - '/build-aur-action-image/**'
-      - '/.github/workflows/build-image.yml'
+      - 'build-aur-action-image/**'
+      - '.github/workflows/build-image.yml'
   schedule:
     - cron:  '0 3 * * *'
   workflow_dispatch:
