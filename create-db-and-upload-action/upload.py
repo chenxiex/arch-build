@@ -16,10 +16,10 @@ if ROOT_PATH.startswith("/"):
 
 if __name__ == "__main__":
     r = subprocess.run(
-        ["rclone", "copy", "./", f"{CONFIG_NAME}/{ROOT_PATH}", "--copy-links"],
+        ["rclone", "sync", "./", f"{CONFIG_NAME}/{ROOT_PATH}", "-c"],
         stderr=subprocess.PIPE,
     )
     if r.returncode != 0:
-        print("Failed when copying to remote")
+        print("Failed when syncing to remote")
         print(r.stderr.decode())
         exit(0)
