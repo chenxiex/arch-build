@@ -17,7 +17,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: ["termius-deb", "visual-studio-code-bin", "all-ways-egpu-git", "genymotion", "lx-music", "qtscrcpy", "setpl-git", "vmware-workstation", "v2rayn-bin", "tsukimi-bin", "wps-office-365", "wps-office-365-fonts"]
+        repos: ["termius-deb", "visual-studio-code-bin", "all-ways-egpu-git", "genymotion", "lx-music", "qtscrcpy", "setpl-git", "vmware-workstation", "v2rayn-bin", "tsukimi-bin"]
         include:
           - repos: "vmware-workstation"
             preinstall-pkgs: "vmware-keymaps"
