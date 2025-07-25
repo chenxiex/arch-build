@@ -38,16 +38,9 @@ jobs:
     
     - uses: actions/upload-artifact@v4
       with:
-        path: ./pikaur/pkg/*.pkg.tar.zst
+        path: ./*.pkg.tar.*
         name: ${{ matrix.repos }}
         if-no-files-found: error
-        
-    - uses: ncipollo/release-action@v1
-      with:
-        allowUpdates: true
-        tag: "packages"
-        artifacts: "./pikaur/pkg/*.zst"
-        token: ${{ secrets.GITHUB_TOKEN }}
           
   uploadToOneDrive:      
     runs-on: ubuntu-latest
@@ -76,5 +69,5 @@ jobs:
         with:
           allowUpdates: true
           tag: "packages"
-          artifacts: "./upload_packages/*.sig,./upload_packages/*.files,./upload_packages/*.db,./upload_packages/*.tar.gz"
+          artifacts: "./upload_packages/*.sig,./upload_packages/*.files,./upload_packages/*.db,./upload_packages/*.pkg.tar.*"
           token: ${{ secrets.GITHUB_TOKEN }}

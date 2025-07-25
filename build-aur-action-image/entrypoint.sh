@@ -11,5 +11,6 @@ if [ ! -z "${PREINSTALL_PKGS}" ]; then
 fi
 
 sudo --set-home -u builder pikaur-static -Sw --noconfirm --xdg-cache-home=./ "$pkgname"
-cd "./pikaur/pkg" || exit 1
+mv ./pikaur/pkg/*.pkg.tar.* ./
+rm -rf ./pikaur
 encode_name.py
