@@ -3,7 +3,7 @@ set -e
 
 init_path=$PWD
 mkdir upload_packages
-find $local_path -type f -name "*.tar.zst" -exec cp {} ./upload_packages/ \;
+find "$local_path" -path "./upload_packages" -prune -o -type f -name "*.pkg.*" -exec cp -t ./upload_packages/ {} +
 cp -dr $init_path/static/* ./upload_packages/
 
 echo "$RCLONE_CONFIG_NAME"
@@ -22,12 +22,12 @@ cd upload_packages || exit 1
 echo "::group::Signing packages"
 
 if [ ! -z "$gpg_key" ]; then
-    packages=( "*.tar.zst" )
+    packages=( "*.pkg.*" )
     for name in $packages
     do
         gpg --detach-sig --yes $name
     done
-    repo-add --verify --sign "./${repo_name:?}.db.tar.gz" ./*.tar.zst
+    repo-add --verify --sign "./${repo_name:?}.db.tar.gz" ./*.pkg.*
 fi
 
 echo "::endgroup::" 
