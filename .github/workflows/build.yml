@@ -38,11 +38,13 @@ jobs:
     
     - uses: actions/upload-artifact@v4
       with:
-        path: ./*.pkg.tar.*
+        path: ./*.pkg.*
         name: ${{ matrix.repos }}
         if-no-files-found: error
           
   uploadToOneDrive:      
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     if: always()
     needs: [buildAUR]
@@ -68,6 +70,6 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
+          commit: "${{ github.ref_name }}"
           tag: "packages"
-          artifacts: "./upload_packages/*.sig,./upload_packages/*.files,./upload_packages/*.db,./upload_packages/*.pkg.tar.*"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "./upload_packages/*"
