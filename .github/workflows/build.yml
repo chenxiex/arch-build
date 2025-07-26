@@ -72,4 +72,4 @@ jobs:
           allowUpdates: true
           commit: "${{ github.ref_name }}"
           tag: "packages"
-          artifacts: "./upload_packages/*.sig,./upload_packages/*.files,./upload_packages/*.db,./upload_packages/*.pkg.tar.*"
+          artifacts: "./upload_packages/*"
