@@ -26,8 +26,8 @@ if [ ! -z "$gpg_key" ]; then
     for name in $packages
     do
         gpg --detach-sig --yes $name
+        repo-add --verify --sign "./${repo_name:?}.db.tar.gz" $name
     done
-    repo-add --verify --sign "./${repo_name:?}.db.tar.gz" ./*.pkg.*
 fi
 
 echo "::endgroup::" 
