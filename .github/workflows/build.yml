@@ -71,4 +71,3 @@ jobs:
           commit: "${{ github.ref_name }}"
           tag: "packages"
           artifacts: "./upload_packages/*.sig,./upload_packages/*.files,./upload_packages/*.db,./upload_packages/*.pkg.tar.*"
-          token: ${{ secrets.GITHUB_TOKEN }}
