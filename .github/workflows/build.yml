@@ -5,6 +5,7 @@ on:
     paths:
       - '**'
       - '!README.md'
+      - '!/build-aur-action-image/**'
   schedule:
     - cron:  '0 4 * * *'
   workflow_dispatch:
