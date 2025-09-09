@@ -19,9 +19,7 @@ jobs:
     strategy:
       matrix:
         repos: ["termius-deb", "visual-studio-code-bin", "all-ways-egpu-git", "lx-music", "qtscrcpy", "setpl-git", "v2rayn-bin", "howdy-git"]
-        include:
-          - repos: 
-            preinstall-pkgs: 
+        preinstall-pkgs: ['']
 
       fail-fast: false
       
