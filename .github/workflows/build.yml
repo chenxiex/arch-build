@@ -18,7 +18,7 @@ jobs:
   buildAUR:
     strategy:
       matrix:
-        repos: ["termius-deb", "visual-studio-code-bin", "all-ways-egpu-git", "lx-music", "qtscrcpy", "setpl-git", "v2rayn-bin", "howdy-git"]
+        repos: ["visual-studio-code-bin", "all-ways-egpu-git", "qtscrcpy", "setpl-git", "v2rayn-bin", "howdy-git"]
         preinstall-pkgs: ['']
 
       fail-fast: false
