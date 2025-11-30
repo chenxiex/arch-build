@@ -6,6 +6,15 @@ on:
       - '**'
       - '!README.md'
       - '!/build-aur-action-image/**'
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '**'
+      - '!README.md'
+      - '!/build-aur-action-image/**'
+    branches:
+      - main
   schedule:
     - cron:  '0 4 * * *'
   workflow_dispatch:
