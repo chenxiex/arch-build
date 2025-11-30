@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "data": {
+    "all-ways-egpu-git": {
+      "version": "fdb5aa4a75dbd62ab2f5a0184a1af2e1b051033b",
+      "revision": "fdb5aa4a75dbd62ab2f5a0184a1af2e1b051033b"
+    },
+    "howdy-git": {
+      "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
+      "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
+    },
+    "qtscrcpy": {
+      "version": "3.3.3-1",
+      "url": "https://aur.archlinux.org/packages/qtscrcpy"
+    },
+    "setpl-git": {
+      "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
+      "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
+    },
+    "v2rayn-bin": {
+      "version": "7.16.4-1",
+      "url": "https://aur.archlinux.org/packages/v2rayn-bin"
+    }
+  }
+}

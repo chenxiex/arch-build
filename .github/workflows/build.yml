@@ -18,20 +18,63 @@ on:
   schedule:
     - cron:  '0 4 * * *'
   workflow_dispatch:
+    inputs:
+      upload:
+        description: 'Upload built packages to Remote storage'
+        required: true
+        type: boolean
+        default: true
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/build-aur-action-image
+  REF: ${{ github.event_name != 'pull_request' && github.ref || github.head_ref }}
 
 jobs:
+  checkVersion:
+    outputs:
+      updates: ${{ steps.check-updates.outputs.updates }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ env.REF }}
+
+    - name: Install nvchecker
+      run: pip3 install nvchecker
+
+    - name: Setup git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    
+    - name: Check for new versions
+      id: check-updates
+      run: |
+        nvchecker -c nvchecker/nvchecker.toml
+        echo "updates=$(nvcmp -c nvchecker/nvchecker.toml -q -j)" >> $GITHUB_OUTPUT
+
+    - name: Commit version records
+      id: commit-versions
+      if: ${{ steps.check-updates.outputs.updates != '[]' }}
+      run: |
+        if [[ -n "$(git status --porcelain -- nvchecker/new_ver.json)" ]]; then
+          git add nvchecker/new_ver.json
+          git commit -m "Update version records"
+          git push
+        else
+          echo "No changes to commit"
+        fi
+
   buildAUR:
+    needs: [checkVersion]
     strategy:
       matrix:
-        repos: ["all-ways-egpu-git", "qtscrcpy", "setpl-git", "v2rayn-bin", "howdy-git"]
+        repos: ${{ fromJson(needs.checkVersion.outputs.updates) }}
         preinstall-pkgs: ['']
 
-      fail-fast: false
-      
+      fail-fast: true
     runs-on: ubuntu-latest
     
     steps:
@@ -50,11 +93,43 @@ jobs:
         name: ${{ matrix.repos }}
         if-no-files-found: error
           
+  updateVersion:
+    needs: [checkVersion, buildAUR]
+    if: needs.checkVersion.outputs.updates != '[]'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ env.REF }}
+
+    - name: Install nvchecker
+      run: pip3 install nvchecker
+    
+    - name: Setup git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    
+    - name: Update version records
+      run: |
+        nvtake -c nvchecker/nvchecker.toml --all
+
+    - name: Commit updated version records
+      run: |
+        if [[ -n "$(git status --porcelain -- nvchecker/old_ver.json)" ]]; then
+          git add nvchecker/old_ver.json
+          git commit -m "Update version records after successful build"
+          git push
+        else
+          echo "No changes to commit"
+        fi
+
   uploadToOneDrive:      
     permissions:
       contents: write
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.upload == 'true') || github.event_name == 'schedule'
     runs-on: ubuntu-latest
-    if: always()
     needs: [buildAUR]
 
     steps:

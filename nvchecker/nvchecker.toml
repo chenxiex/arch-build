@@ -1,0 +1,24 @@
+[__config__]
+oldver = "old_ver.json"
+newver = "new_ver.json"
+
+[all-ways-egpu-git]
+source = "git"
+git = "https://github.com/ewagner12/all-ways-egpu.git"
+use_commit = true
+
+[qtscrcpy]
+source = "aur"
+
+[setpl-git]
+source = "git"
+git = "https://github.com/horshack-dpreview/setPL.git"
+use_commit = true
+
+[v2rayn-bin]
+source = "aur"
+
+[howdy-git]
+source = "git"
+git = "https://github.com/boltgolt/howdy.git"
+use_commit = true
