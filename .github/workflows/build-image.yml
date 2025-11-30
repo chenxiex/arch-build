@@ -6,13 +6,13 @@ on:
       - 'build-aur-action-image/**'
       - '.github/workflows/build-image.yml'
     branches:
-      - main
+      - master
   pull_request:
     paths:
       - 'build-aur-action-image/**'
       - '.github/workflows/build-image.yml'
     branches:
-      - main
+      - master
   schedule:
     - cron:  '0 3 * * *'
   workflow_dispatch:
