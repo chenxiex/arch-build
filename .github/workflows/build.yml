@@ -37,7 +37,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: .cache/nvchecker
-        key: 0-nvchecker
+        key: 0-${{ github.ref }}-nvchecker
     
     - name: Install nvchecker
       run: pip3 install nvchecker
@@ -87,7 +87,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: .cache/nvchecker
-        key: 0-nvchecker
+        key: 0-${{ github.ref }}-nvchecker
         fail-on-cache-miss: true
     
     - name: Install nvchecker
