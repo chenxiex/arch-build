@@ -33,7 +33,6 @@ jobs:
   checkVersion:
     outputs:
       updates: ${{ steps.check-updates.outputs.updates }}
-      sha: ${{ steps.commit-versions.outputs.sha }}
     runs-on: ubuntu-latest
 
     steps:
@@ -60,7 +59,6 @@ jobs:
         git add nvchecker/new_ver.json
         git commit -m "Update version records"
         git push
-        echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
   buildAUR:
     needs: [checkVersion]
@@ -96,7 +94,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: ${{ needs.checkVersion.outputs.sha }}
+        ref: ${{ github.ref }}
 
     - name: Install nvchecker
       run: pip3 install nvchecker
