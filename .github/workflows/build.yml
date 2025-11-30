@@ -45,6 +45,7 @@ jobs:
     - name: Check for new versions
       id: check-updates
       run: |
+        mkdir -p .cache/nvchecker
         nvchecker -c nvchecker.toml
         echo "updates=$(nvcmp -c nvchecker.toml -q -j)" >> $GITHUB_OUTPUT
 
