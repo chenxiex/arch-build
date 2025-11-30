@@ -56,7 +56,7 @@ jobs:
       id: commit-versions
       if: ${{ steps.check-updates.outputs.updates != '[]' }}
       run: |
-        if ! git diff-index --quiet HEAD -- nvchecker/new_ver.json; then
+        if [[ -n "$(git status --porcelain -- nvchecker/new_ver.json)" ]]; then
           git add nvchecker/new_ver.json
           git commit -m "Update version records"
           git push
@@ -114,7 +114,7 @@ jobs:
 
     - name: Commit updated version records
       run: |
-        if ! git diff-index --quiet HEAD -- nvchecker/old_ver.json; then
+        if [[ -n "$(git status --porcelain -- nvchecker/old_ver.json)" ]]; then
           git add nvchecker/old_ver.json
           git commit -m "Update version records after successful build"
           git push
