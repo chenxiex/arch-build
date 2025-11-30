@@ -1,6 +1,6 @@
 [__config__]
-oldver = ".cache/nvchecker/old_ver.json"
-newver = ".cache/nvchecker/new_ver.json"
+oldver = "old_ver.json"
+newver = "new_ver.json"
 
 [all-ways-egpu-git]
 source = "git"
