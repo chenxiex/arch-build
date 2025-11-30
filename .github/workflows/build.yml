@@ -24,14 +24,38 @@ env:
   IMAGE_NAME: ${{ github.repository }}/build-aur-action-image
 
 jobs:
+  checkVersion:
+    outputs:
+      updates: ${{ steps.check-updates.outputs.updates }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache nvchecker version record files
+      id: cache-nvchecker
+      uses: actions/cache@v4
+      with:
+        path: .cache/nvchecker
+        key: 0-nvchecker
+    
+    - name: Install nvchecker
+      run: pip3 install nvchecker
+    
+    - name: Check for new versions
+      id: check-updates
+      run: |
+        nvchecker -c nvchecker.toml
+        echo "updates=$(nvcmp -c nvchecker.toml -q -j)" >> $GITHUB_OUTPUT
+
   buildAUR:
+    needs: [checkVersion]
     strategy:
       matrix:
-        repos: ["all-ways-egpu-git", "qtscrcpy", "setpl-git", "v2rayn-bin", "howdy-git"]
+        repos: ${{ fromJson(needs.checkVersion.outputs.updates) }}
         preinstall-pkgs: ['']
 
-      fail-fast: false
-      
+      fail-fast: true
     runs-on: ubuntu-latest
     
     steps:
@@ -50,11 +74,31 @@ jobs:
         name: ${{ matrix.repos }}
         if-no-files-found: error
           
+  updateVersion:
+    needs: [buildAUR]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache nvchecker version record files
+      id: cache-nvchecker
+      uses: actions/cache@v4
+      with:
+        path: .cache/nvchecker
+        key: 0-nvchecker
+        fail-on-cache-miss: true
+    
+    - name: Install nvchecker
+      run: pip3 install nvchecker
+    
+    - name: Update version records
+      run: nvtake -c nvchecker.toml --all
+
   uploadToOneDrive:      
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    if: always()
     needs: [buildAUR]
 
     steps:

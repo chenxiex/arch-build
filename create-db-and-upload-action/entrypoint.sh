@@ -19,6 +19,17 @@ fi
 
 cd upload_packages || exit 1
 
+echo "::group::Removing old packages"
+
+repo-add "./${repo_name:?}.db.tar.gz" ./*.tar.zst
+
+python3 $init_path/create-db-and-upload-action/sync.py 
+
+echo "::endgroup::" 
+
+rm "./${repo_name:?}.db.tar.gz"
+rm "./${repo_name:?}.files.tar.gz"
+
 echo "::group::Signing packages"
 
 if [ ! -z "$gpg_key" ]; then
