@@ -28,6 +28,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}/build-aur-action-image
+  REF: ${{ github.event_name != 'pull_request' && github.ref || github.head_ref }}
 
 jobs:
   checkVersion:
@@ -37,6 +38,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ env.REF }}
 
     - name: Install nvchecker
       run: pip3 install nvchecker
@@ -98,7 +101,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: ${{ github.ref }}
+        ref: ${{ env.REF }}
 
     - name: Install nvchecker
       run: pip3 install nvchecker
