@@ -69,6 +69,7 @@ jobs:
 
   buildAUR:
     needs: [checkVersion]
+    if: needs.checkVersion.outputs.updates != '[]'
     strategy:
       matrix:
         repos: ${{ fromJson(needs.checkVersion.outputs.updates) }}
@@ -94,8 +95,7 @@ jobs:
         if-no-files-found: error
           
   updateVersion:
-    needs: [checkVersion, buildAUR]
-    if: needs.checkVersion.outputs.updates != '[]'
+    needs: [buildAUR]
     runs-on: ubuntu-latest
 
     steps:
