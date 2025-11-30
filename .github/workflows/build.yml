@@ -56,9 +56,13 @@ jobs:
       id: commit-versions
       if: ${{ steps.check-updates.outputs.updates != '[]' }}
       run: |
-        git add nvchecker/new_ver.json
-        git commit -m "Update version records"
-        git push
+        if ! git diff-index --quiet HEAD -- nvchecker/new_ver.json; then
+          git add nvchecker/new_ver.json
+          git commit -m "Update version records"
+          git push
+        else
+          echo "No changes to commit"
+        fi
 
   buildAUR:
     needs: [checkVersion]
@@ -110,9 +114,13 @@ jobs:
 
     - name: Commit updated version records
       run: |
-        git add nvchecker/old_ver.json
-        git commit -m "Update version records after successful build"
-        git push
+        if ! git diff-index --quiet HEAD -- nvchecker/old_ver.json; then
+          git add nvchecker/old_ver.json
+          git commit -m "Update version records after successful build"
+          git push
+        else
+          echo "No changes to commit"
+        fi
 
   uploadToOneDrive:      
     permissions:
