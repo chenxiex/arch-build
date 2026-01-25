@@ -2,8 +2,8 @@
   "version": 2,
   "data": {
     "all-ways-egpu-git": {
-      "version": "fdb5aa4a75dbd62ab2f5a0184a1af2e1b051033b",
-      "revision": "fdb5aa4a75dbd62ab2f5a0184a1af2e1b051033b"
+      "version": "51254df089e81a1525bf18fe40f00f6231c52319",
+      "revision": "51254df089e81a1525bf18fe40f00f6231c52319"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -18,7 +18,7 @@
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
     "v2rayn-bin": {
-      "version": "7.16.6-1",
+      "version": "7.17.0-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     }
   }
