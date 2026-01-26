@@ -17,6 +17,10 @@
       "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
+    "ttf-ms-fonts": {
+      "version": "2.0-12",
+      "url": "https://aur.archlinux.org/packages/ttf-ms-fonts"
+    },
     "v2rayn-bin": {
       "version": "7.17.0-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
