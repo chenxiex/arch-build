@@ -7,9 +7,6 @@ source = "git"
 git = "https://github.com/ewagner12/all-ways-egpu.git"
 use_commit = true
 
-[qtscrcpy]
-source = "aur"
-
 [setpl-git]
 source = "git"
 git = "https://github.com/horshack-dpreview/setPL.git"
@@ -22,6 +19,3 @@ source = "aur"
 source = "git"
 git = "https://github.com/boltgolt/howdy.git"
 use_commit = true
-
-[ttf-ms-fonts]
-source = "aur"
