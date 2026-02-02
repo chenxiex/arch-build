@@ -2,8 +2,8 @@
   "version": 2,
   "data": {
     "all-ways-egpu-git": {
-      "version": "d161296e696d8b8400bcfec09b7cf4676759250f",
-      "revision": "d161296e696d8b8400bcfec09b7cf4676759250f"
+      "version": "da7fb328d6b4a858cf09e82308bfb11d292296c9",
+      "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -22,7 +22,7 @@
       "url": "https://aur.archlinux.org/packages/ttf-ms-fonts"
     },
     "v2rayn-bin": {
-      "version": "7.17.1-3",
+      "version": "7.17.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     }
   }
