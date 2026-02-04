@@ -6,6 +6,7 @@ COPY makepkg.conf /etc/makepkg.conf.d/makepkg.conf
 COPY encode_name.py /usr/local/bin/encode_name.py
 COPY entrypoint.sh /entrypoint.sh
 
+RUN pacman-key --init
 RUN pacman -Syu --noconfirm
 RUN pacman -S --needed --noconfirm base-devel git python 
 RUN pacman -S --needed --noconfirm curl jq
