@@ -7,10 +7,10 @@ chmod -R a+rw .
 sudo pacman -Syu --noconfirm
 
 if [ ! -z "${PREINSTALL_PKGS}" ]; then
-    sudo --set-home -u builder pikaur-static -S --noconfirm "${PREINSTALL_PKGS}"
+    sudo --set-home -u builder pikaur -S --noconfirm "${PREINSTALL_PKGS}"
 fi
 
-sudo --set-home -u builder pikaur-static -Sw --noconfirm --xdg-cache-home=./ "$pkgname"
+sudo --set-home -u builder pikaur -Sw --noconfirm --xdg-cache-home=./ "$pkgname"
 mv ./pikaur/pkg/*.pkg.tar.* ./
 rm -rf ./pikaur
 encode_name.py
