@@ -9,7 +9,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN pacman -Syu --noconfirm
 RUN pacman -S --needed --noconfirm base-devel git python 
 RUN pacman -S --needed --noconfirm curl jq
-RUN tee -a /etc/pacman.conf << EOF
+RUN tee -a /etc/pacman.conf << 'EOF'
 [archlinuxcn]
 Server = https://repo.archlinuxcn.org/$arch
 EOF
