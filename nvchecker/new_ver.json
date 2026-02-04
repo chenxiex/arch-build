@@ -2,27 +2,19 @@
   "version": 2,
   "data": {
     "all-ways-egpu-git": {
-      "version": "51254df089e81a1525bf18fe40f00f6231c52319",
-      "revision": "51254df089e81a1525bf18fe40f00f6231c52319"
+      "version": "da7fb328d6b4a858cf09e82308bfb11d292296c9",
+      "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
     },
-    "qtscrcpy": {
-      "version": "3.3.3-1",
-      "url": "https://aur.archlinux.org/packages/qtscrcpy"
-    },
     "setpl-git": {
       "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
-    "ttf-ms-fonts": {
-      "version": "2.0-12",
-      "url": "https://aur.archlinux.org/packages/ttf-ms-fonts"
-    },
     "v2rayn-bin": {
-      "version": "7.17.0-1",
+      "version": "7.17.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     }
   }
