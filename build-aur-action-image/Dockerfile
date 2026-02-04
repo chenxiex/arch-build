@@ -13,7 +13,7 @@ RUN tee -a /etc/pacman.conf << 'EOF'
 [archlinuxcn]
 Server = https://repo.archlinuxcn.org/$arch
 EOF
-RUN pacman -Sy && pacman -S archlinuxcn-keyring
+RUN pacman -Sy --noconfirm && pacman -S --noconfirm archlinuxcn-keyring
 RUN pacman -S --needed --noconfirm pikaur
 
 RUN useradd builder -m
