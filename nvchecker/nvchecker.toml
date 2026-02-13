@@ -19,3 +19,8 @@ source = "aur"
 source = "git"
 git = "https://github.com/boltgolt/howdy.git"
 use_commit = true
+
+[linuxflip-git]
+source = "git"
+git = "https://github.com/yehuthi/linuxflip.git"
+use_commit = true
