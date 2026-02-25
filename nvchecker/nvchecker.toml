@@ -27,3 +27,8 @@ use_commit = true
 
 [i915-sriov-dkms]
 source = "aur"
+
+[gamescope-session-steam-git]
+source = "git"
+git = "https://github.com/OpenGamingCollective/gamescope-session-steam.git"
+use_commit = true
