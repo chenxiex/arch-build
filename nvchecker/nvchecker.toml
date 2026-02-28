@@ -27,3 +27,6 @@ source = "aur"
 source = "git"
 git = "https://github.com/OpenGamingCollective/gamescope-session-steam.git"
 use_commit = true
+
+[gamescope-nvidia]
+source = "aur"
