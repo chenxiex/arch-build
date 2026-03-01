@@ -17,14 +17,6 @@
       "version": "2025.12.10-1",
       "url": "https://aur.archlinux.org/packages/i915-sriov-dkms"
     },
-    "nautilus-nutstore": {
-      "version": "6.4.3-1",
-      "url": "https://aur.archlinux.org/packages/nautilus-nutstore"
-    },
-    "nutstore": {
-      "version": "6.4.1-1",
-      "url": "https://aur.archlinux.org/packages/nutstore"
-    },
     "setpl-git": {
       "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
