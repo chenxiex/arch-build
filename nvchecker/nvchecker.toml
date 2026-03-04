@@ -2,11 +2,6 @@
 oldver = "old_ver.json"
 newver = "new_ver.json"
 
-[all-ways-egpu-git]
-source = "git"
-git = "https://github.com/ewagner12/all-ways-egpu.git"
-use_commit = true
-
 [setpl-git]
 source = "git"
 git = "https://github.com/horshack-dpreview/setPL.git"
@@ -20,13 +15,7 @@ source = "git"
 git = "https://github.com/boltgolt/howdy.git"
 use_commit = true
 
-[i915-sriov-dkms]
-source = "aur"
-
-[gamescope-session-steam-git]
+[steam-devices-git]
 source = "git"
-git = "https://github.com/OpenGamingCollective/gamescope-session-steam.git"
+git = "https://github.com/ValveSoftware/steam-devices.git"
 use_commit = true
-
-[gamescope-nvidia]
-source = "aur"
