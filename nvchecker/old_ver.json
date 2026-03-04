@@ -25,6 +25,10 @@
       "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
+    "steam-devices-git": {
+      "version": "e0ab31454b1c55468af14d08740b51f11581a324",
+      "revision": "e0ab31454b1c55468af14d08740b51f11581a324"
+    },
     "v2rayn-bin": {
       "version": "7.18.0-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
