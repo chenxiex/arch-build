@@ -1,6 +1,10 @@
 {
   "version": 2,
   "data": {
+    "gnome-shell-extension-gjs-osk-git": {
+      "version": "4cb4fb2d315067f7c483882f1a189a08990648a8",
+      "revision": "4cb4fb2d315067f7c483882f1a189a08990648a8"
+    },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
