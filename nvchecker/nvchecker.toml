@@ -19,3 +19,8 @@ use_commit = true
 source = "git"
 git = "https://github.com/ValveSoftware/steam-devices.git"
 use_commit = true
+
+[gnome-shell-extension-gjs-osk-git]
+source = "git"
+git = "https://github.com/Vishram1123/gjs-osk.git"
+use_commit = true
