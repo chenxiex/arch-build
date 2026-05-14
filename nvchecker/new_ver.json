@@ -1,6 +1,10 @@
 {
   "version": 2,
   "data": {
+    "gnome-shell-extension-gjs-osk-git": {
+      "version": "4191527db5ca206547d48242ad4a08b10a5e3d03",
+      "revision": "4191527db5ca206547d48242ad4a08b10a5e3d03"
+    },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
@@ -10,11 +14,11 @@
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
     "steam-devices-git": {
-      "version": "e0ab31454b1c55468af14d08740b51f11581a324",
-      "revision": "e0ab31454b1c55468af14d08740b51f11581a324"
+      "version": "39e7bd00f7a322e5165fd8f416b31d23daf6d385",
+      "revision": "39e7bd00f7a322e5165fd8f416b31d23daf6d385"
     },
     "v2rayn-bin": {
-      "version": "7.19.5-1",
+      "version": "7.21.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     }
   }
