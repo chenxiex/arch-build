@@ -24,3 +24,8 @@ use_commit = true
 source = "git"
 git = "https://github.com/Vishram1123/gjs-osk.git"
 use_commit = true
+
+[nvtray-git]
+source = "git"
+git = "https://github.com/chenxiex/nvtray.git"
+use_commit = true
