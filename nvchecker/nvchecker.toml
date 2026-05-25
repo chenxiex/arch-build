@@ -29,3 +29,8 @@ use_commit = true
 source = "git"
 git = "https://github.com/chenxiex/nvtray.git"
 use_commit = true
+
+[gnome-shell-extension-kimpanel-git]
+source = "git"
+git = "https://github.com/wengxt/gnome-shell-extension-kimpanel.git"
+use_commit = true
