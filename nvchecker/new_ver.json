@@ -5,6 +5,10 @@
       "version": "4191527db5ca206547d48242ad4a08b10a5e3d03",
       "revision": "4191527db5ca206547d48242ad4a08b10a5e3d03"
     },
+    "gnome-shell-extension-kimpanel-git": {
+      "version": "ff828412608da89d8ede464c85649659a19a7650",
+      "revision": "ff828412608da89d8ede464c85649659a19a7650"
+    },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
@@ -22,7 +26,7 @@
       "revision": "39e7bd00f7a322e5165fd8f416b31d23daf6d385"
     },
     "v2rayn-bin": {
-      "version": "7.22.2-1",
+      "version": "7.22.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     }
   }
