@@ -9,6 +9,10 @@
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
     },
+    "nvtray-git": {
+      "version": "1a1737768b854dccbc6df79e27b6065475b1c606",
+      "revision": "1a1737768b854dccbc6df79e27b6065475b1c606"
+    },
     "setpl-git": {
       "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
@@ -18,7 +22,7 @@
       "revision": "39e7bd00f7a322e5165fd8f416b31d23daf6d385"
     },
     "v2rayn-bin": {
-      "version": "7.21.3-1",
+      "version": "7.22.2-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     }
   }
