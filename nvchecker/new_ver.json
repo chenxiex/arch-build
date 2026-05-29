@@ -32,6 +32,10 @@
     "v2rayn-bin": {
       "version": "7.22.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
+    },
+    "wvkbd": {
+      "version": "0.19.4-1",
+      "url": "https://aur.archlinux.org/packages/wvkbd"
     }
   }
 }
