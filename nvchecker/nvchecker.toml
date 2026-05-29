@@ -20,22 +20,17 @@ source = "git"
 git = "https://github.com/ValveSoftware/steam-devices.git"
 use_commit = true
 
-[gnome-shell-extension-gjs-osk-git]
-source = "git"
-git = "https://github.com/Vishram1123/gjs-osk.git"
-use_commit = true
-
 [nvtray-git]
 source = "git"
 git = "https://github.com/chenxiex/nvtray.git"
 use_commit = true
 
-[gnome-shell-extension-kimpanel-git]
+[dms-shell-git]
 source = "git"
-git = "https://github.com/wengxt/gnome-shell-extension-kimpanel.git"
+git = "https://github.com/AvengeMedia/DankMaterialShell.git"
 use_commit = true
 
-[dms-shell-git]
+[greetd-dms-greeter-git]
 source = "git"
 git = "https://github.com/AvengeMedia/DankMaterialShell.git"
 use_commit = true
