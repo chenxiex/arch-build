@@ -34,3 +34,8 @@ use_commit = true
 source = "git"
 git = "https://github.com/wengxt/gnome-shell-extension-kimpanel.git"
 use_commit = true
+
+[dms-shell-git]
+source = "git"
+git = "https://github.com/AvengeMedia/DankMaterialShell.git"
+use_commit = true
