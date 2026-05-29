@@ -5,6 +5,10 @@
       "version": "da7fb328d6b4a858cf09e82308bfb11d292296c9",
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
+    "dms-shell-git": {
+      "version": "d819865853ff5cf40a8b60d6d14eaed929971685",
+      "revision": "d819865853ff5cf40a8b60d6d14eaed929971685"
+    },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
       "url": "https://aur.archlinux.org/packages/gamescope-nvidia"
