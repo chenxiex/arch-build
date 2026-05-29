@@ -39,3 +39,6 @@ use_commit = true
 source = "git"
 git = "https://github.com/AvengeMedia/DankMaterialShell.git"
 use_commit = true
+
+[wvkbd]
+source = "aur"
