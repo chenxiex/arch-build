@@ -6,8 +6,8 @@
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "dms-shell-git": {
-      "version": "d819865853ff5cf40a8b60d6d14eaed929971685",
-      "revision": "d819865853ff5cf40a8b60d6d14eaed929971685"
+      "version": "2b661e241d556e577b635778116d71414ab97af1",
+      "revision": "2b661e241d556e577b635778116d71414ab97af1"
     },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
@@ -26,8 +26,8 @@
       "revision": "ff828412608da89d8ede464c85649659a19a7650"
     },
     "greetd-dms-greeter-git": {
-      "version": "d819865853ff5cf40a8b60d6d14eaed929971685",
-      "revision": "d819865853ff5cf40a8b60d6d14eaed929971685"
+      "version": "2b661e241d556e577b635778116d71414ab97af1",
+      "revision": "2b661e241d556e577b635778116d71414ab97af1"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -38,8 +38,8 @@
       "url": "https://aur.archlinux.org/packages/i915-sriov-dkms"
     },
     "nvtray-git": {
-      "version": "1a1737768b854dccbc6df79e27b6065475b1c606",
-      "revision": "1a1737768b854dccbc6df79e27b6065475b1c606"
+      "version": "3b7ca9d944b0df1de2eddbfbce9f46a9be24ed22",
+      "revision": "3b7ca9d944b0df1de2eddbfbce9f46a9be24ed22"
     },
     "setpl-git": {
       "version": "516baf20f0e4833e19fbdc5e66470eab91b98016",
