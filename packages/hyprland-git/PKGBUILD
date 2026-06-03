@@ -1,0 +1,134 @@
+# Maintainer: FabioLolix
+# Maintainer: éclairevoyant
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
+# Contributor: ThatOneCalculator <kainoa at t1c dot dev>
+
+_pkgname="hyprland"
+pkgname="$_pkgname-git"
+pkgver=0.55.2.r92.g61321ce
+pkgrel=1
+pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
+arch=('x86_64' 'aarch64')
+url="https://github.com/hyprwm/Hyprland"
+license=('BSD-3-Clause')
+
+depends=(
+  aquamarine-git
+  cairo
+  gcc-libs
+  glib2
+  glibc
+  glslang
+  hyprcursor-git
+  hyprgraphics-git
+  hyprland-guiutils-git
+  hyprlang-git
+  hyprutils-git
+  hyprwire-git
+  lcms2
+  libdisplay-info
+  libdrm
+  libglvnd
+  libinput
+  libliftoff
+  libx11
+  libxcb
+  libxcomposite
+  libxcursor
+  libxfixes
+  libxkbcommon
+  libxrender
+  lua
+  mesa
+  muparser
+  opengl-driver
+  pango
+  pixman
+  polkit
+  re2
+  seatd
+  systemd-libs
+  tomlplusplus
+  udis86-git
+  util-linux-libs
+  wayland
+  wayland-protocols
+  xcb-proto
+  xcb-util
+  xcb-util-errors
+  xcb-util-image
+  xcb-util-keysyms
+  xcb-util-renderutil
+  xcb-util-wm
+  xorg-xwayland
+)
+makedepends=(
+  cmake
+  git
+  glaze
+  hyprland-protocols-git
+  hyprwayland-scanner-git
+  ninja
+  #patch
+  #pkgconf
+  xorgproto
+)
+optdepends=(
+  'cmake: to build and install plugins using hyprpm'
+  'cpio: to build and install plugins using hyprpm'
+  'glaze: to build and install plugins using hyprpm'
+  'hyprqt6engine-git: the recommended way to manage qt styles'
+  'meson: to build and install plugins using hyprpm'
+  'uwsm: the recommended way to start Hyprland'
+  'hyprshutdown: the recommended way to shutdown Hyprland'
+)
+
+conflicts=("$_pkgname")
+provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor")
+
+_pkgsrc=$_pkgname
+_pr14953_commit=ab718d8ae71875804222f5ad3f80d8f2cd592330
+source=(
+  "$_pkgsrc::git+$url.git"
+  "pr-14953.patch::$url/commit/${_pr14953_commit}.patch"
+)
+sha256sums=('SKIP'
+            '14a37fa097c33f96be6487b0bf6bfce711da419358d66261b1e64e81cdc4209b')
+
+backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
+}
+
+prepare() {
+  cd "$_pkgsrc"
+
+  if git apply --reverse --check "$srcdir/pr-14953.patch" >/dev/null 2>&1; then
+    msg2 "PR 14953 patch is already applied; skipping"
+  else
+    git apply -3 "$srcdir/pr-14953.patch"
+  fi
+}
+
+build() {
+  cd "$_pkgsrc"
+  local cmake_options=(
+    -B build
+    -S .
+    -G Ninja
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+  )
+  cmake "${cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  cd "$_pkgsrc"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm0644 LICENSE -t "$pkgdir/usr/share/licenses/${pkgname}/"
+}
