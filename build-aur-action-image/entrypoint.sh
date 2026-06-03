@@ -4,34 +4,23 @@ set -euo pipefail
 target=${1:?Package name or package directory is required}
 workspace=$PWD
 build_mode=${BUILD_MODE:-aur}
-pgp_keyserver=${PGP_KEYSERVER:-hkps://keyserver.ubuntu.com}
+skip_pgp_check=${SKIP_PGP_CHECK:-true}
+pikaur_args=(--noconfirm)
+
+case "$skip_pgp_check" in
+    1|true|TRUE|yes|YES)
+        pikaur_args+=(--mflags=--skippgpcheck)
+        ;;
+esac
 
 chmod -R a+rw .
 
 sudo pacman -Syu --noconfirm
 
-setup_gnupg() {
-    sudo install -d -m 700 -o builder -g builder /home/builder/.gnupg
-    sudo --set-home -u builder tee /home/builder/.gnupg/gpg.conf > /dev/null << EOF
-keyserver $pgp_keyserver
-keyserver-options auto-key-retrieve
-auto-key-retrieve
-EOF
-    sudo --set-home -u builder gpg --batch --list-keys > /dev/null 2>&1 || true
-
-    if [[ -n "${PGP_KEYS:-}" ]]; then
-        # PGP_KEYS is intentionally split so callers can pass a key list.
-        # shellcheck disable=SC2086
-        sudo --set-home -u builder gpg --batch --keyserver "$pgp_keyserver" --recv-keys ${PGP_KEYS}
-    fi
-}
-
-setup_gnupg
-
 if [[ -n "${PREINSTALL_PKGS:-}" ]]; then
     # PREINSTALL_PKGS is intentionally split so callers can pass a package list.
     # shellcheck disable=SC2086
-    sudo --set-home -u builder pikaur -S --noconfirm ${PREINSTALL_PKGS}
+    sudo --set-home -u builder pikaur -S "${pikaur_args[@]}" ${PREINSTALL_PKGS}
 fi
 
 collect_packages() {
@@ -44,7 +33,7 @@ collect_packages() {
 
 case "$build_mode" in
     aur)
-        sudo --set-home -u builder pikaur -Sw --noconfirm --xdg-cache-home="$workspace" "$target"
+        sudo --set-home -u builder pikaur -Sw "${pikaur_args[@]}" --xdg-cache-home="$workspace" "$target"
         collect_packages "$workspace/pikaur/pkg"
         ;;
     local)
@@ -59,7 +48,7 @@ case "$build_mode" in
         fi
 
         cd "$pkgdir"
-        sudo --set-home -u builder pikaur -P --noconfirm --xdg-cache-home="$workspace" ./PKGBUILD
+        sudo --set-home -u builder pikaur -P "${pikaur_args[@]}" --xdg-cache-home="$workspace" ./PKGBUILD
         cd "$workspace"
 
         collect_packages "$workspace/pikaur/pkg"

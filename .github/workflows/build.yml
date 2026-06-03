@@ -185,8 +185,7 @@ jobs:
         -v ${{ github.workspace }}:/workspace \
         -w /workspace \
         -e PREINSTALL_PKGS=${{ matrix.preinstall-pkgs }} \
-        -e PGP_KEYS="${{ vars.PGP_KEYS }}" \
-        -e PGP_KEYSERVER="${{ vars.PGP_KEYSERVER }}" \
+        -e SKIP_PGP_CHECK="${{ vars.SKIP_PGP_CHECK }}" \
         ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ matrix.repos }}
 
     - uses: actions/upload-artifact@v4
@@ -213,8 +212,7 @@ jobs:
         -v ${{ github.workspace }}:/workspace \
         -w /workspace \
         -e BUILD_MODE=local \
-        -e PGP_KEYS="${{ vars.PGP_KEYS }}" \
-        -e PGP_KEYSERVER="${{ vars.PGP_KEYSERVER }}" \
+        -e SKIP_PGP_CHECK="${{ vars.SKIP_PGP_CHECK }}" \
         ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ matrix.package.path }}
 
     - uses: actions/upload-artifact@v4
