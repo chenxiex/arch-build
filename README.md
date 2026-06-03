@@ -22,6 +22,17 @@ docker run --rm \
 
 Non-AUR packages live under `packages/<pkgname>/`. Each package directory must contain a `PKGBUILD`, and may also contain its own `nvchecker.toml`, `old_ver.json`, and `new_ver.json`.
 
+The build image configures GnuPG to retrieve missing PGP keys automatically from `hkps://keyserver.ubuntu.com`. Override the keyserver with `PGP_KEYSERVER`, or pre-import known keys with `PGP_KEYS`:
+
+```Bash
+docker run --rm \
+        -v ${workspace}:/workspace \
+        -w /workspace \
+        -e BUILD_MODE=local \
+        -e PGP_KEYS="B965BC5D279F42ED" \
+        ghcr.io/chenxiex/arch-build/build-aur-action-image:latest packages/hyprland-git
+```
+
 Example:
 
 ```
