@@ -24,6 +24,10 @@ on:
         required: true
         type: boolean
         default: true
+      package:
+        description: 'Non-AUR package directory name under packages/ to build'
+        required: false
+        type: string
 
 env:
   REGISTRY: ghcr.io
@@ -33,34 +37,129 @@ env:
 jobs:
   checkVersion:
     outputs:
-      updates: ${{ steps.check-updates.outputs.updates }}
+      aur_updates: ${{ steps.check_aur_updates.outputs.updates }}
+      nonaur_updates: ${{ steps.check_nonaur_updates.outputs.updates }}
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v5
       with:
         ref: ${{ env.REF }}
+        fetch-depth: 0
 
     - name: Install nvchecker
       run: pip3 install nvchecker
 
     - name: Setup git
+      if: github.event_name != 'pull_request'
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    
-    - name: Check for new versions
-      id: check-updates
+
+    - name: Check AUR package versions
+      id: check_aur_updates
+      env:
+        DISPATCH_PACKAGE: ${{ inputs.package || '' }}
       run: |
+        set -euo pipefail
+
+        if [[ -n "$DISPATCH_PACKAGE" ]]; then
+          echo "updates=[]" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+
         nvchecker -c nvchecker/nvchecker.toml
-        echo "updates=$(nvcmp -c nvchecker/nvchecker.toml -q -j)" >> $GITHUB_OUTPUT
+        echo "updates=$(nvcmp -c nvchecker/nvchecker.toml -q -j)" >> "$GITHUB_OUTPUT"
+
+    - name: Check non-AUR packages
+      id: check_nonaur_updates
+      env:
+        DISPATCH_PACKAGE: ${{ inputs.package || '' }}
+        BEFORE_SHA: ${{ github.event.before || '' }}
+      run: |
+        set -euo pipefail
+
+        declare -A packages=()
+
+        add_package() {
+          local pkgname=$1
+          local strict=${2:-true}
+          local pkgdir="packages/$pkgname"
+
+          if [[ ! -d "$pkgdir" ]]; then
+            if [[ "$strict" == "false" ]]; then
+              echo "Skipping missing non-AUR package directory: $pkgdir"
+              return 0
+            fi
+            echo "Non-AUR package directory does not exist: $pkgdir" >&2
+            exit 1
+          fi
+          if [[ ! -f "$pkgdir/PKGBUILD" ]]; then
+            if [[ "$strict" == "false" ]]; then
+              echo "Skipping non-AUR package directory without PKGBUILD: $pkgdir"
+              return 0
+            fi
+            echo "Non-AUR package directory does not contain a PKGBUILD: $pkgdir" >&2
+            exit 1
+          fi
+
+          packages["$pkgname"]="$pkgdir"
+        }
+
+        add_package_from_path() {
+          local changed_path=$1
+
+          if [[ "$changed_path" == packages/*/* ]]; then
+            local rest=${changed_path#packages/}
+            local pkgname=${rest%%/*}
+            add_package "$pkgname" false
+          fi
+        }
+
+        if [[ -n "$DISPATCH_PACKAGE" ]]; then
+          add_package "$DISPATCH_PACKAGE"
+        else
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            if [[ -n "$BEFORE_SHA" && "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]]; then
+              mapfile -t changed_files < <(git diff --name-only "$BEFORE_SHA" "$GITHUB_SHA")
+            else
+              mapfile -t changed_files < <(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA")
+            fi
+
+            for changed_file in "${changed_files[@]}"; do
+              add_package_from_path "$changed_file"
+            done
+          fi
+
+          for config in packages/*/nvchecker.toml; do
+            [[ -f "$config" ]] || continue
+
+            nvchecker -c "$config"
+            updates=$(nvcmp -c "$config" -q -j)
+            if [[ "$updates" != "[]" ]]; then
+              pkgdir=${config%/nvchecker.toml}
+              add_package "${pkgdir#packages/}"
+            fi
+          done
+        fi
+
+        updates=$(
+          for pkgname in "${!packages[@]}"; do
+            printf '%s\t%s\n' "$pkgname" "${packages[$pkgname]}"
+          done | jq -c -R -s 'split("\n")[:-1] | map(split("\t")) | sort_by(.[0]) | map({name: .[0], path: .[1]})'
+        )
+
+        echo "updates=$updates" >> "$GITHUB_OUTPUT"
 
     - name: Commit version records
       id: commit-versions
-      if: ${{ steps.check-updates.outputs.updates != '[]' }}
+      if: github.event_name != 'pull_request'
       run: |
-        if [[ -n "$(git status --porcelain -- nvchecker/new_ver.json)" ]]; then
+        if [[ -n "$(git status --porcelain -- nvchecker/new_ver.json packages)" ]]; then
           git add nvchecker/new_ver.json
+          if [[ -d packages ]]; then
+            git add packages
+          fi
           git commit -m "Update version records"
           git push
         else
@@ -69,33 +168,67 @@ jobs:
 
   buildAUR:
     needs: [checkVersion]
-    if: needs.checkVersion.outputs.updates != '[]'
+    if: needs.checkVersion.outputs.aur_updates != '[]'
     strategy:
       matrix:
-        repos: ${{ fromJson(needs.checkVersion.outputs.updates) }}
+        repos: ${{ fromJson(needs.checkVersion.outputs.aur_updates) }}
         preinstall-pkgs: ['']
 
       fail-fast: true
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v5
-    
+
     - run: |
         docker run --rm \
         -v ${{ github.workspace }}:/workspace \
         -w /workspace \
         -e PREINSTALL_PKGS=${{ matrix.preinstall-pkgs }} \
-        ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{matrix.repos}}
-    
+        ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ matrix.repos }}
+
     - uses: actions/upload-artifact@v4
       with:
         path: ./*.pkg.*
         name: ${{ matrix.repos }}
         if-no-files-found: error
-          
+
+  buildNonAUR:
+    needs: [checkVersion]
+    if: needs.checkVersion.outputs.nonaur_updates != '[]'
+    strategy:
+      matrix:
+        package: ${{ fromJson(needs.checkVersion.outputs.nonaur_updates) }}
+
+      fail-fast: true
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v5
+
+    - run: |
+        docker run --rm \
+        -v ${{ github.workspace }}:/workspace \
+        -w /workspace \
+        -e BUILD_MODE=local \
+        ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ matrix.package.path }}
+
+    - uses: actions/upload-artifact@v4
+      with:
+        path: ./*.pkg.*
+        name: nonaur-${{ matrix.package.name }}
+        if-no-files-found: error
+
   updateVersion:
-    needs: [buildAUR]
+    needs: [checkVersion, buildAUR, buildNonAUR]
+    if: >-
+      ${{
+        always() &&
+        github.event_name != 'pull_request' &&
+        (needs.buildAUR.result == 'success' || needs.buildAUR.result == 'skipped') &&
+        (needs.buildNonAUR.result == 'success' || needs.buildNonAUR.result == 'skipped') &&
+        (needs.buildAUR.result == 'success' || needs.buildNonAUR.result == 'success')
+      }}
     runs-on: ubuntu-latest
 
     steps:
@@ -105,42 +238,73 @@ jobs:
 
     - name: Install nvchecker
       run: pip3 install nvchecker
-    
+
     - name: Setup git
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    
+
     - name: Update version records
+      env:
+        AUR_BUILD_RESULT: ${{ needs.buildAUR.result }}
+        NONAUR_BUILD_RESULT: ${{ needs.buildNonAUR.result }}
+        NONAUR_UPDATES: ${{ needs.checkVersion.outputs.nonaur_updates }}
       run: |
-        nvtake -c nvchecker/nvchecker.toml --all
+        set -euo pipefail
+
+        if [[ "$AUR_BUILD_RESULT" == "success" ]]; then
+          nvtake -c nvchecker/nvchecker.toml --all
+        fi
+
+        if [[ "$NONAUR_BUILD_RESULT" == "success" ]]; then
+          printf '%s' "$NONAUR_UPDATES" > /tmp/nonaur-updates.json
+          jq -r '.[].path' /tmp/nonaur-updates.json | while read -r pkgdir; do
+            config="$pkgdir/nvchecker.toml"
+            if [[ -f "$config" ]]; then
+              nvchecker -c "$config"
+              nvtake -c "$config" --all
+            else
+              echo "No nvchecker config for $pkgdir; skipping version record update"
+            fi
+          done
+        fi
 
     - name: Commit updated version records
       run: |
-        if [[ -n "$(git status --porcelain -- nvchecker/old_ver.json)" ]]; then
-          git add nvchecker/old_ver.json
+        if [[ -n "$(git status --porcelain -- nvchecker/old_ver.json nvchecker/new_ver.json packages)" ]]; then
+          git add nvchecker/old_ver.json nvchecker/new_ver.json
+          if [[ -d packages ]]; then
+            git add packages
+          fi
           git commit -m "Update version records after successful build"
           git push
         else
           echo "No changes to commit"
         fi
 
-  uploadToOneDrive:      
+  uploadToOneDrive:
     permissions:
       contents: write
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.upload == 'true') || github.event_name == 'schedule'
+    if: >-
+      ${{
+        always() &&
+        (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.upload) || github.event_name == 'schedule') &&
+        (needs.buildAUR.result == 'success' || needs.buildNonAUR.result == 'success') &&
+        (needs.buildAUR.result == 'success' || needs.buildAUR.result == 'skipped') &&
+        (needs.buildNonAUR.result == 'success' || needs.buildNonAUR.result == 'skipped')
+      }}
     runs-on: ubuntu-latest
-    needs: [buildAUR]
+    needs: [buildAUR, buildNonAUR]
 
     steps:
       - uses: actions/checkout@v5
-      
+
       - uses: actions/download-artifact@v4
         id: download
 
       - name: Display structure of downloaded files
         run: ls -R ${{ steps.download.outputs.download-path }}
-      
+
       - uses: ./create-db-and-upload-action
         with:
           RCLONE_CONFIG_CONTENT: ${{ secrets.RCLONE_CONFIG }}

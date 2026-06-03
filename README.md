@@ -10,6 +10,46 @@ docker run --rm \
 ```
 `${workspace}` is the output path. Not only the specified packages but also the dependencies in aur will be there.
 
+The same image can also build non-AUR packages from local PKGBUILDs:
+
+```Bash
+docker run --rm \
+        -v ${workspace}:/workspace \
+        -w /workspace \
+        -e BUILD_MODE=local \
+        ghcr.io/chenxiex/arch-build/build-aur-action-image:latest packages/${pkgname}
+```
+
+Non-AUR packages live under `packages/<pkgname>/`. Each package directory must contain a `PKGBUILD`, and may also contain its own `nvchecker.toml`, `old_ver.json`, and `new_ver.json`.
+
+Example:
+
+```
+packages/
+`-- example/
+    |-- PKGBUILD
+    |-- nvchecker.toml
+    |-- old_ver.json
+    `-- new_ver.json
+```
+
+`nvchecker.toml` is optional. Packages without it are built only when files under their own `packages/<pkgname>/` directory are pushed, or when they are explicitly selected from `workflow_dispatch`.
+
+If a non-AUR package has `nvchecker.toml`, any successful build of that package updates its version records, no matter whether the build was triggered by nvchecker, a push touching that package directory, or a manual dispatch.
+
+Package-local nvchecker files should keep version records beside the config:
+
+```toml
+[__config__]
+oldver = "old_ver.json"
+newver = "new_ver.json"
+
+[example]
+source = "github"
+github = "owner/repo"
+use_latest_release = true
+```
+
 # Usage
 The packages are located at Cloudflare R2 and GitHub releases, choose one of you like.
 
@@ -46,3 +86,5 @@ Unlike the upstream repo, this repo use [nvchecker](https://github.com/lilydjwg/
 nvtake -c nvchecker/nvchecker.toml PACKAGE_NAME=none
 ```
 then commit and push.
+
+For non-AUR packages, use GitHub Actions `workflow_dispatch` with `package=<pkgname>` to build a specific directory under `packages/`. Leave `package` empty to use automatic detection.
