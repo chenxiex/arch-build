@@ -4,7 +4,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 _pkgname="hyprland"
-pkgname="$_pkgname-git"
+pkgname="$_pkgname-git-anlor"
 pkgver=0.55.2.r92.g61321ce
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
@@ -84,7 +84,7 @@ optdepends=(
 )
 
 conflicts=("$_pkgname")
-provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor")
+provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor" "$_pkgname-git")
 
 _pkgsrc=$_pkgname
 _pr14953_commit=ab718d8ae71875804222f5ad3f80d8f2cd592330
