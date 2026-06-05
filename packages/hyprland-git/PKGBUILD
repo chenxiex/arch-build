@@ -93,7 +93,7 @@ source=(
   "pr-14953.patch::$url/commit/${_pr14953_commit}.patch"
 )
 sha256sums=('SKIP'
-            '14a37fa097c33f96be6487b0bf6bfce711da419358d66261b1e64e81cdc4209b')
+            'SKIP')
 
 backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
 
