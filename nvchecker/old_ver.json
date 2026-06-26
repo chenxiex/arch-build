@@ -6,8 +6,8 @@
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "dms-shell-git": {
-      "version": "e0ab0a6b9011ecfb367742ced417840acdde9539",
-      "revision": "e0ab0a6b9011ecfb367742ced417840acdde9539"
+      "version": "0bc89429bc66b502368083862cf09487dd2e9a5e",
+      "revision": "0bc89429bc66b502368083862cf09487dd2e9a5e"
     },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
@@ -26,8 +26,8 @@
       "revision": "ff828412608da89d8ede464c85649659a19a7650"
     },
     "greetd-dms-greeter-git": {
-      "version": "e0ab0a6b9011ecfb367742ced417840acdde9539",
-      "revision": "e0ab0a6b9011ecfb367742ced417840acdde9539"
+      "version": "0bc89429bc66b502368083862cf09487dd2e9a5e",
+      "revision": "0bc89429bc66b502368083862cf09487dd2e9a5e"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -46,11 +46,11 @@
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
     "steam-devices-git": {
-      "version": "39e7bd00f7a322e5165fd8f416b31d23daf6d385",
-      "revision": "39e7bd00f7a322e5165fd8f416b31d23daf6d385"
+      "version": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60",
+      "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
-      "version": "7.22.5-1",
+      "version": "7.22.7-2",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     },
     "wvkbd": {
