@@ -2,12 +2,12 @@
   "version": 2,
   "data": {
     "dms-shell-git": {
-      "version": "1e7ee25e135b7efddb5c220c803f1465c71c803a",
-      "revision": "1e7ee25e135b7efddb5c220c803f1465c71c803a"
+      "version": "0bc89429bc66b502368083862cf09487dd2e9a5e",
+      "revision": "0bc89429bc66b502368083862cf09487dd2e9a5e"
     },
     "greetd-dms-greeter-git": {
-      "version": "1e7ee25e135b7efddb5c220c803f1465c71c803a",
-      "revision": "1e7ee25e135b7efddb5c220c803f1465c71c803a"
+      "version": "0bc89429bc66b502368083862cf09487dd2e9a5e",
+      "revision": "0bc89429bc66b502368083862cf09487dd2e9a5e"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -22,8 +22,8 @@
       "revision": "516baf20f0e4833e19fbdc5e66470eab91b98016"
     },
     "steam-devices-git": {
-      "version": "bbf6cf03104aed5f73ac2798bdb09dc63ea3adf8",
-      "revision": "bbf6cf03104aed5f73ac2798bdb09dc63ea3adf8"
+      "version": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60",
+      "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
       "version": "7.22.7-2",
