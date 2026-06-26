@@ -87,12 +87,15 @@ conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor" "$_pkgname-git")
 
 _pkgsrc=$_pkgname
-_pr14953_commit=ab718d8ae71875804222f5ad3f80d8f2cd592330
+_pr14953=14953
+_pr15135=15135
 source=(
   "$_pkgsrc::git+$url.git"
-  "pr-14953.patch::$url/commit/${_pr14953_commit}.patch"
+  "pr-14953.patch::$url/pull/${_pr14953}.patch"
+  "pr-15135.patch::$url/pull/${_pr15135}.patch"
 )
 sha256sums=('SKIP'
+            'SKIP'
             'SKIP')
 
 backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
@@ -106,11 +109,14 @@ pkgver() {
 prepare() {
   cd "$_pkgsrc"
 
-  if git apply --reverse --check "$srcdir/pr-14953.patch" >/dev/null 2>&1; then
-    msg2 "PR 14953 patch is already applied; skipping"
-  else
-    git apply -3 "$srcdir/pr-14953.patch"
-  fi
+  local _patch
+  for _patch in pr-14953.patch pr-15135.patch; do
+    if git apply --reverse --check "$srcdir/$_patch" >/dev/null 2>&1; then
+      msg2 "${_patch%.patch} patch is already applied; skipping"
+    else
+      git apply -3 "$srcdir/$_patch"
+    fi
+  done
 }
 
 build() {

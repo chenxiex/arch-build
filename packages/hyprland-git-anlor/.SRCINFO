@@ -74,7 +74,9 @@ pkgbase = hyprland-git-anlor
 	conflicts = hyprland
 	backup = usr/share/xdg-desktop-portal/hyprland-portals.conf
 	source = hyprland::git+https://github.com/hyprwm/Hyprland.git
-	source = pr-14953.patch::https://github.com/hyprwm/Hyprland/commit/ab718d8ae71875804222f5ad3f80d8f2cd592330.patch
+	source = pr-14953.patch::https://github.com/hyprwm/Hyprland/pull/14953.patch
+	source = pr-15135.patch::https://github.com/hyprwm/Hyprland/pull/15135.patch
+	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 
