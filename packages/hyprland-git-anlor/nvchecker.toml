@@ -1,8 +1,0 @@
-[__config__]
-oldver = "old_ver.json"
-newver = "new_ver.json"
-
-[hyprland-git-anlor]
-source = "git"
-git = "https://github.com/hyprwm/Hyprland.git"
-use_commit = true
