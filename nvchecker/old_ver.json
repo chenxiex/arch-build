@@ -6,8 +6,8 @@
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "dms-shell-git": {
-      "version": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da",
-      "revision": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da"
+      "version": "c0eeed4e894e728d2778d3c1952c83aaf8715620",
+      "revision": "c0eeed4e894e728d2778d3c1952c83aaf8715620"
     },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
@@ -26,8 +26,8 @@
       "revision": "ff828412608da89d8ede464c85649659a19a7650"
     },
     "greetd-dms-greeter-git": {
-      "version": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da",
-      "revision": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da"
+      "version": "c0eeed4e894e728d2778d3c1952c83aaf8715620",
+      "revision": "c0eeed4e894e728d2778d3c1952c83aaf8715620"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -50,7 +50,7 @@
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
-      "version": "7.22.7-2",
+      "version": "7.23.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     },
     "wvkbd": {
