@@ -2,12 +2,12 @@
   "version": 2,
   "data": {
     "dms-shell-git": {
-      "version": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da",
-      "revision": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da"
+      "version": "c44ffae7515679bcdc3a80786624b779b0a08b49",
+      "revision": "c44ffae7515679bcdc3a80786624b779b0a08b49"
     },
     "greetd-dms-greeter-git": {
-      "version": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da",
-      "revision": "a095d0ed905d72d4f6f78d0a63c8eeecd27940da"
+      "version": "c44ffae7515679bcdc3a80786624b779b0a08b49",
+      "revision": "c44ffae7515679bcdc3a80786624b779b0a08b49"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
@@ -26,7 +26,7 @@
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
-      "version": "7.22.7-2",
+      "version": "7.23.3-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     },
     "wvkbd": {
