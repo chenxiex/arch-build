@@ -2,12 +2,12 @@
   "version": 2,
   "data": {
     "dms-shell-git": {
-      "version": "c0eeed4e894e728d2778d3c1952c83aaf8715620",
-      "revision": "c0eeed4e894e728d2778d3c1952c83aaf8715620"
+      "version": "c44ffae7515679bcdc3a80786624b779b0a08b49",
+      "revision": "c44ffae7515679bcdc3a80786624b779b0a08b49"
     },
     "greetd-dms-greeter-git": {
-      "version": "c0eeed4e894e728d2778d3c1952c83aaf8715620",
-      "revision": "c0eeed4e894e728d2778d3c1952c83aaf8715620"
+      "version": "c44ffae7515679bcdc3a80786624b779b0a08b49",
+      "revision": "c44ffae7515679bcdc3a80786624b779b0a08b49"
     },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
