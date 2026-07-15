@@ -25,6 +25,10 @@
       "version": "ff828412608da89d8ede464c85649659a19a7650",
       "revision": "ff828412608da89d8ede464c85649659a19a7650"
     },
+    "greetd-dms-greeter-bin": {
+      "version": "1.5.0-1",
+      "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
+    },
     "greetd-dms-greeter-git": {
       "version": "c44ffae7515679bcdc3a80786624b779b0a08b49",
       "revision": "c44ffae7515679bcdc3a80786624b779b0a08b49"
@@ -50,7 +54,7 @@
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
-      "version": "7.23.3-1",
+      "version": "7.23.4-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     },
     "wvkbd": {
