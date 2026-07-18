@@ -2,8 +2,8 @@
   "version": 2,
   "data": {
     "dms-shell-git": {
-      "version": "ed44d02202006d15e891261201d17f9d7f57c6ac",
-      "revision": "ed44d02202006d15e891261201d17f9d7f57c6ac"
+      "version": "5dfd875b9ec012a15a6c986be25e6552659dd7fb",
+      "revision": "5dfd875b9ec012a15a6c986be25e6552659dd7fb"
     },
     "greetd-dms-greeter-bin": {
       "version": "1.5.0-1",
