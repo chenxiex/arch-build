@@ -6,8 +6,8 @@
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "dms-shell-git": {
-      "version": "5dfd875b9ec012a15a6c986be25e6552659dd7fb",
-      "revision": "5dfd875b9ec012a15a6c986be25e6552659dd7fb"
+      "version": "069df80b22996adaff5d2f1afa96fa8d50d7a1f6",
+      "revision": "069df80b22996adaff5d2f1afa96fa8d50d7a1f6"
     },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
@@ -26,7 +26,7 @@
       "revision": "ff828412608da89d8ede464c85649659a19a7650"
     },
     "greetd-dms-greeter-bin": {
-      "version": "1.5.0-1",
+      "version": "1.5.2-1",
       "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
     },
     "greetd-dms-greeter-git": {
