@@ -1,10 +1,6 @@
 {
   "version": 2,
   "data": {
-    "dms-shell-git": {
-      "version": "069df80b22996adaff5d2f1afa96fa8d50d7a1f6",
-      "revision": "069df80b22996adaff5d2f1afa96fa8d50d7a1f6"
-    },
     "greetd-dms-greeter-bin": {
       "version": "1.5.2-1",
       "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
