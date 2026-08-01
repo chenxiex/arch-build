@@ -1,10 +1,6 @@
 {
   "version": 2,
   "data": {
-    "greetd-dms-greeter-bin": {
-      "version": "1.5.2-1",
-      "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
-    },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
@@ -20,14 +16,6 @@
     "steam-devices-git": {
       "version": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60",
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
-    },
-    "v2rayn-bin": {
-      "version": "7.24.4-1",
-      "url": "https://aur.archlinux.org/packages/v2rayn-bin"
-    },
-    "wvkbd": {
-      "version": "0.19.4-1",
-      "url": "https://aur.archlinux.org/packages/wvkbd"
     }
   }
 }
