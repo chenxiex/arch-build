@@ -35,3 +35,6 @@ source = "aur"
 
 [wvkbd]
 source = "aur"
+
+[chatgpt-desktop]
+source = "aur"
