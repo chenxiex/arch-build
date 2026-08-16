@@ -5,6 +5,10 @@
       "version": "da7fb328d6b4a858cf09e82308bfb11d292296c9",
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
+    "chatgpt-desktop": {
+      "version": "26.810.52044-2",
+      "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
+    },
     "dms-shell-git": {
       "version": "d4fecfcd5c020f1e819df174ed4b0fb1f6187b8c",
       "revision": "d4fecfcd5c020f1e819df174ed4b0fb1f6187b8c"
