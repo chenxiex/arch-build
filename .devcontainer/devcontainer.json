@@ -22,7 +22,9 @@
 				"charliermarsh.ruff",
 				"astral-sh.ty",
 				"github.vscode-github-actions",
-				"ms-azuretools.vscode-containers"
+				"ms-azuretools.vscode-containers",
+				"mads-hartmann.bash-ide-vscode",
+				"timonwong.shellcheck"
 			]
 		}
 	},
