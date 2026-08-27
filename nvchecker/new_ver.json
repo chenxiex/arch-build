@@ -6,8 +6,8 @@
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "ea0b158eb8c7d368ae7083218dbfc792faf019b2",
-      "revision": "ea0b158eb8c7d368ae7083218dbfc792faf019b2"
+      "version": "530c58b928e929a06a59418e54956008163288fa",
+      "revision": "530c58b928e929a06a59418e54956008163288fa"
     },
     "greetd-dms-greeter-bin": {
       "version": "1.5.2-1",
@@ -30,7 +30,7 @@
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
-      "version": "7.24.4-1",
+      "version": "7.24.8-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     },
     "wvkbd": {
