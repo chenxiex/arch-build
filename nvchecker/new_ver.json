@@ -6,8 +6,8 @@
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "7372b79c2dd8fe33ab37745f2305d9e77152be61",
-      "revision": "7372b79c2dd8fe33ab37745f2305d9e77152be61"
+      "version": "0604de881e430b93330092d9ed915e5820ef7bf8",
+      "revision": "0604de881e430b93330092d9ed915e5820ef7bf8"
     },
     "greetd-dms-greeter-bin": {
       "version": "1.5.2-1",
