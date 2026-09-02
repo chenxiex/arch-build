@@ -10,8 +10,8 @@
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "0604de881e430b93330092d9ed915e5820ef7bf8",
-      "revision": "0604de881e430b93330092d9ed915e5820ef7bf8"
+      "version": "ed9e01e438a000c4cce6d77ca75e50e0c1802ce4",
+      "revision": "ed9e01e438a000c4cce6d77ca75e50e0c1802ce4"
     },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
@@ -58,7 +58,7 @@
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
     "v2rayn-bin": {
-      "version": "7.24.8-1",
+      "version": "7.24.9-1",
       "url": "https://aur.archlinux.org/packages/v2rayn-bin"
     },
     "wvkbd": {
