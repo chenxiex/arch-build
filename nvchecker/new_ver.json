@@ -2,15 +2,15 @@
   "version": 2,
   "data": {
     "chatgpt-desktop": {
-      "version": "26.825.51511-1",
+      "version": "26.901.20858-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "ab1e57dda5efd327b8c1b19bb112f84eeeadaed1",
-      "revision": "ab1e57dda5efd327b8c1b19bb112f84eeeadaed1"
+      "version": "c1f1da1d26f4198347b4b9380bdf499889df195e",
+      "revision": "c1f1da1d26f4198347b4b9380bdf499889df195e"
     },
     "greetd-dms-greeter-bin": {
-      "version": "1.5.2-1",
+      "version": "1.6.0-1",
       "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
     },
     "howdy-git": {
