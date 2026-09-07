@@ -6,11 +6,11 @@
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "f3d9d73db12c7639609495b1219911910428b9ac",
-      "revision": "f3d9d73db12c7639609495b1219911910428b9ac"
+      "version": "d0f47bb316a9392c7422b2731fd71c9a76af42cb",
+      "revision": "d0f47bb316a9392c7422b2731fd71c9a76af42cb"
     },
     "greetd-dms-greeter-bin": {
-      "version": "1.6.0-1",
+      "version": "1.6.0-3",
       "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
     },
     "howdy-git": {
