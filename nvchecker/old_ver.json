@@ -6,12 +6,12 @@
       "revision": "da7fb328d6b4a858cf09e82308bfb11d292296c9"
     },
     "chatgpt-desktop": {
-      "version": "26.901.51231-1",
+      "version": "26.908.40834-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "b3e146b310fa39fc82928baa1df2171edc03bd24",
-      "revision": "b3e146b310fa39fc82928baa1df2171edc03bd24"
+      "version": "b4f6da25ee1d2c677424e87aa492ffd203d8f46a",
+      "revision": "b4f6da25ee1d2c677424e87aa492ffd203d8f46a"
     },
     "gamescope-nvidia": {
       "version": "3.16.20-1",
