@@ -2,12 +2,12 @@
   "version": 2,
   "data": {
     "chatgpt-desktop": {
-      "version": "26.915.31029-1",
+      "version": "26.917.61114-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "dms-shell-git": {
-      "version": "2d1b4f905d8169632ceaeb6e8d9ea065f5f56ccc",
-      "revision": "2d1b4f905d8169632ceaeb6e8d9ea065f5f56ccc"
+      "version": "80060ee925ffcea6f5e759cbf79393a2f6e05f2d",
+      "revision": "80060ee925ffcea6f5e759cbf79393a2f6e05f2d"
     },
     "greetd-dms-greeter-bin": {
       "version": "1.6.2-1",
