@@ -5,10 +5,6 @@
       "version": "26.917.71314-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
-    "dms-shell-git": {
-      "version": "a609b5f999a9182e002b226f2197347b0d1bc747",
-      "revision": "a609b5f999a9182e002b226f2197347b0d1bc747"
-    },
     "greetd-dms-greeter-bin": {
       "version": "1.6.2-1",
       "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
@@ -16,6 +12,10 @@
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
+    },
+    "metacubexd-desktop-bin": {
+      "version": "1.273.1-1",
+      "url": "https://aur.archlinux.org/packages/metacubexd-desktop-bin"
     },
     "nvtray-git": {
       "version": "3b7ca9d944b0df1de2eddbfbce9f46a9be24ed22",
