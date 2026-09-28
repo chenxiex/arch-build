@@ -25,11 +25,6 @@ source = "git"
 git = "https://github.com/chenxiex/nvtray.git"
 use_commit = true
 
-[dms-shell-git]
-source = "git"
-git = "https://github.com/AvengeMedia/DankMaterialShell.git"
-use_commit = true
-
 [greetd-dms-greeter-bin]
 source = "aur"
 
@@ -37,4 +32,7 @@ source = "aur"
 source = "aur"
 
 [chatgpt-desktop]
+source = "aur"
+
+[metacubexd-desktop-bin]
 source = "aur"
