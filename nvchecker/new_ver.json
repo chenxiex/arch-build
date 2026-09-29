@@ -29,10 +29,6 @@
       "version": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60",
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
     },
-    "v2rayn-bin": {
-      "version": "7.24.9-1",
-      "url": "https://aur.archlinux.org/packages/v2rayn-bin"
-    },
     "wvkbd": {
       "version": "0.20-1",
       "url": "https://aur.archlinux.org/packages/wvkbd"
