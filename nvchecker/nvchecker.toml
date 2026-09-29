@@ -7,9 +7,6 @@ source = "git"
 git = "https://github.com/horshack-dpreview/setPL.git"
 use_commit = true
 
-[v2rayn-bin]
-source = "aur"
-
 [howdy-git]
 source = "git"
 git = "https://github.com/boltgolt/howdy.git"
