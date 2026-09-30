@@ -188,7 +188,7 @@ jobs:
         -e SKIP_PGP_CHECK="${{ vars.SKIP_PGP_CHECK }}" \
         ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ matrix.repos }}
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         path: ./*.pkg.*
         name: ${{ matrix.repos }}
@@ -215,7 +215,7 @@ jobs:
         -e SKIP_PGP_CHECK="${{ vars.SKIP_PGP_CHECK }}" \
         ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest ${{ matrix.package.path }}
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         path: ./*.pkg.*
         name: nonaur-${{ matrix.package.name }}
@@ -301,7 +301,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v7
         id: download
 
       - name: Display structure of downloaded files
