@@ -9,10 +9,6 @@
       "version": "2.1.292-1",
       "url": "https://aur.archlinux.org/packages/claude-code"
     },
-    "greetd-dms-greeter-bin": {
-      "version": "1.6.2-1",
-      "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
-    },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
@@ -32,10 +28,6 @@
     "steam-devices-git": {
       "version": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60",
       "revision": "22ec85e5ff5ea2e15c56d71a41bcbef46356cd60"
-    },
-    "wvkbd": {
-      "version": "0.20-1",
-      "url": "https://aur.archlinux.org/packages/wvkbd"
     }
   }
 }
