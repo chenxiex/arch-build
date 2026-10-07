@@ -33,3 +33,6 @@ source = "aur"
 
 [metacubexd-desktop-bin]
 source = "aur"
+
+[claude-code]
+source = "aur"
