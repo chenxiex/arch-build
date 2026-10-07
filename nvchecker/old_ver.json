@@ -9,6 +9,10 @@
       "version": "26.930.21537-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
+    "claude-code": {
+      "version": "2.1.292-1",
+      "url": "https://aur.archlinux.org/packages/claude-code"
+    },
     "dms-shell-git": {
       "version": "a609b5f999a9182e002b226f2197347b0d1bc747",
       "revision": "a609b5f999a9182e002b226f2197347b0d1bc747"
