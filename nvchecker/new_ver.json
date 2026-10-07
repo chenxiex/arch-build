@@ -5,6 +5,10 @@
       "version": "26.930.21537-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
+    "claude-code": {
+      "version": "2.1.292-1",
+      "url": "https://aur.archlinux.org/packages/claude-code"
+    },
     "greetd-dms-greeter-bin": {
       "version": "1.6.2-1",
       "url": "https://aur.archlinux.org/packages/greetd-dms-greeter-bin"
