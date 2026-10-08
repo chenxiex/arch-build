@@ -2,11 +2,11 @@
   "version": 2,
   "data": {
     "chatgpt-desktop": {
-      "version": "26.930.21537-1",
+      "version": "26.1002.52244-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "claude-code": {
-      "version": "2.1.292-1",
+      "version": "2.1.294-1",
       "url": "https://aur.archlinux.org/packages/claude-code"
     },
     "howdy-git": {
