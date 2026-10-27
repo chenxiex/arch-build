@@ -110,6 +110,7 @@ records only after all builds succeed, removing entries for packages no longer c
 
 Every package file produced by the builds, including collected dependency and split
 packages, and its signature are forcibly uploaded to refresh their R2 objects.
+All files under `static/` are also forcibly uploaded during a quarterly rebuild.
 Dependencies not present in build artifacts are not forcibly refreshed. Packages
 copied back from the remote repository reuse their existing signatures and are not
 forcibly refreshed. If a restored package has no signature, one is generated when

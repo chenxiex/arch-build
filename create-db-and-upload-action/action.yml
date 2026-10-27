@@ -14,7 +14,7 @@ inputs:
   local_path:
     default: './'
   force_reupload:
-    description: 'Force reupload of packages from the current build'
+    description: 'Force reupload of built packages, signatures, and static files'
     default: 'false'
 runs:
   using: 'docker'

@@ -13,7 +13,7 @@ if [[ "${FORCE_REUPLOAD:-false}" == "true" && ! -s "$REFRESH_MANIFEST" ]]; then
     echo "No built package files found to refresh" >&2
     exit 1
 fi
-cp -dr $init_path/static/* ./upload_packages/
+cp -dr "$init_path/static/." ./upload_packages/
 
 echo "$RCLONE_CONFIG_NAME"
 
@@ -60,6 +60,11 @@ if [ ! -z "$gpg_key" ]; then
 fi
 
 echo "::endgroup::" 
+
+if [[ "${FORCE_REUPLOAD:-false}" == "true" ]]; then
+    # Keep this separate from the built package list used for signing above.
+    find -L "$init_path/static" -type f -printf '%P\n' >> "$REFRESH_MANIFEST"
+fi
 
 echo "::group::Uploading to remote"
 python3 $init_path/create-db-and-upload-action/upload.py 
