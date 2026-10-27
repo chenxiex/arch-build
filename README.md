@@ -109,10 +109,12 @@ It checks versions in isolated, empty records and replaces the repository's vers
 records only after all builds succeed, removing entries for packages no longer configured.
 
 Every package file produced by the builds, including collected dependency and split
-packages, is forcibly uploaded to refresh its R2 object. Dependencies not present in
-build artifacts are not forcibly refreshed. Packages copied back from the remote
-repository are not forcibly refreshed, and the existing sync can still delete remote
-files absent from the assembled repository.
+packages, and its signature are forcibly uploaded to refresh their R2 objects.
+Dependencies not present in build artifacts are not forcibly refreshed. Packages
+copied back from the remote repository reuse their existing signatures and are not
+forcibly refreshed. If a restored package has no signature, one is generated when
+signing is enabled. The existing sync can still delete remote files absent from the
+assembled repository.
 
 Configure R2 object expiration separately (for example, 180 days). A failed or missed
 quarterly run can leave less than one quarter before objects expire, so monitor the

@@ -7,7 +7,6 @@ import shutil
 import glob
 import pyalpm
 from typing import NamedTuple
-from contextlib import suppress
 
 REPO_NAME = os.environ["repo_name"]
 ROOT_PATH = os.environ["dest_path"]
@@ -74,7 +73,7 @@ def rclone_delete(name: str):
         raise RuntimeError(r.stderr.decode())
 
 
-def rclone_download(name: str, dest_path: str = "./"):
+def rclone_download(name: str, dest_path: str = "./", *, missing_ok: bool = False):
     r = subprocess.run(
         [
             "rclone",
@@ -85,8 +84,11 @@ def rclone_download(name: str, dest_path: str = "./"):
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
+    if r.returncode in (3, 4) and missing_ok:
+        return False
     if r.returncode != 0:
         raise RuntimeError(r.stderr.decode())
+    return True
 
 
 def get_old_packages(
@@ -113,8 +115,13 @@ def download_local_miss_pkgs(
     old_package_files = [i.filename for i in old_packages]
     download_package_files = [i for i in remote_package_files if i not in old_package_files and i not in local_package_files]
     for r in download_package_files:
-        with suppress(RuntimeError):
+        try:
             rclone_download(r)
+        except RuntimeError:
+            continue
+        # Reuse the existing signature so unchanged packages and their signatures
+        # keep their original remote object timestamps.
+        rclone_download(f"{r}.sig", missing_ok=True)
 
 
 if __name__ == "__main__":

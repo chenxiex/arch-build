@@ -6,14 +6,12 @@ mkdir upload_packages
 find "$local_path" -path "$init_path/upload_packages" -prune -o -path "./upload_packages" -prune -o -type f -name "*.pkg.*" -exec bash -c '
     for file; do cp -f -t ./upload_packages/ "$file" || exit 1; done
 ' _ {} +
-if [[ "${FORCE_REUPLOAD:-false}" == "true" ]]; then
-    export REFRESH_MANIFEST
-    REFRESH_MANIFEST=$(mktemp)
-    find ./upload_packages -maxdepth 1 -type f -name '*.pkg.tar.*' ! -name '*.sig' -printf '%f\n' > "$REFRESH_MANIFEST"
-    if [[ ! -s "$REFRESH_MANIFEST" ]]; then
-        echo "No built package files found to refresh" >&2
-        exit 1
-    fi
+export REFRESH_MANIFEST
+REFRESH_MANIFEST=$(mktemp)
+find ./upload_packages -maxdepth 1 -type f -name '*.pkg.tar.*' ! -name '*.sig' -printf '%f\n' > "$REFRESH_MANIFEST"
+if [[ "${FORCE_REUPLOAD:-false}" == "true" && ! -s "$REFRESH_MANIFEST" ]]; then
+    echo "No built package files found to refresh" >&2
+    exit 1
 fi
 cp -dr $init_path/static/* ./upload_packages/
 
@@ -44,11 +42,20 @@ rm "./${repo_name:?}.files.tar.gz"
 echo "::group::Signing packages"
 
 if [ ! -z "$gpg_key" ]; then
-    packages=( "*.pkg.*" )
-    for name in $packages
-    do
-        gpg --detach-sig --yes $name
-        repo-add --verify --sign "./${repo_name:?}.db.tar.gz" $name
+    declare -A built_packages=()
+    while IFS= read -r name; do
+        built_packages["$name"]=1
+    done < "$REFRESH_MANIFEST"
+
+    for name in ./*.pkg.tar.*; do
+        [[ -f "$name" && "$name" != *.sig ]] || continue
+        if [[ -n "${built_packages[${name#./}]:-}" || ! -f "$name.sig" ]]; then
+            gpg --detach-sig --yes "$name"
+        fi
+        if [[ "${FORCE_REUPLOAD:-false}" == "true" && -n "${built_packages[${name#./}]:-}" ]]; then
+            printf '%s.sig\n' "${name#./}" >> "$REFRESH_MANIFEST"
+        fi
+        repo-add --verify --sign "./${repo_name:?}.db.tar.gz" "$name"
     done
 fi
 
