@@ -1,4 +1,5 @@
 name: 'Generate Arch Repo database and upload'
+description: 'Build, sign, and upload an Arch package repository'
 inputs:
   RCLONE_CONFIG_CONTENT:
     required: true
@@ -12,6 +13,9 @@ inputs:
     description: 'Your GPG private key, used to sign repo.'
   local_path:
     default: './'
+  force_reupload:
+    description: 'Force reupload of packages from the current build'
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -23,3 +27,4 @@ runs:
     repo_name: ${{ inputs.repo_name }}
     gpg_key: ${{ inputs.gpg-privatekey }}
     local_path: ${{ inputs.local_path }}
+    FORCE_REUPLOAD: ${{ inputs.force_reupload }}

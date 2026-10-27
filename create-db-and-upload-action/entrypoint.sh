@@ -3,7 +3,18 @@ set -e
 
 init_path=$PWD
 mkdir upload_packages
-find "$local_path" -path "./upload_packages" -prune -o -type f -name "*.pkg.*" -exec cp -t ./upload_packages/ {} +
+find "$local_path" -path "$init_path/upload_packages" -prune -o -path "./upload_packages" -prune -o -type f -name "*.pkg.*" -exec bash -c '
+    for file; do cp -f -t ./upload_packages/ "$file" || exit 1; done
+' _ {} +
+if [[ "${FORCE_REUPLOAD:-false}" == "true" ]]; then
+    export REFRESH_MANIFEST
+    REFRESH_MANIFEST=$(mktemp)
+    find ./upload_packages -maxdepth 1 -type f -name '*.pkg.tar.*' ! -name '*.sig' -printf '%f\n' > "$REFRESH_MANIFEST"
+    if [[ ! -s "$REFRESH_MANIFEST" ]]; then
+        echo "No built package files found to refresh" >&2
+        exit 1
+    fi
+fi
 cp -dr $init_path/static/* ./upload_packages/
 
 echo "$RCLONE_CONFIG_NAME"

@@ -99,3 +99,22 @@ nvtake -c nvchecker/nvchecker.toml PACKAGE_NAME=none
 then commit and push.
 
 For non-AUR packages, use GitHub Actions `workflow_dispatch` with `package=<pkgname>` to build a specific directory under `packages/`. Leave `package` empty to use automatic detection.
+
+## Quarterly rebuilds
+
+The Quarterly rebuild workflow rebuilds every AUR package in `nvchecker/nvchecker.toml`
+and every local package with a `packages/<pkgname>/nvchecker.toml` on January, April,
+July, and October 1. Run it manually from the Actions tab using **Run workflow**.
+It checks versions in isolated, empty records and replaces the repository's version
+records only after all builds succeed, removing entries for packages no longer configured.
+
+Every package file produced by the builds, including collected dependency and split
+packages, is forcibly uploaded to refresh its R2 object. Dependencies not present in
+build artifacts are not forcibly refreshed. Packages copied back from the remote
+repository are not forcibly refreshed, and the existing sync can still delete remote
+files absent from the assembled repository.
+
+Configure R2 object expiration separately (for example, 180 days). A failed or missed
+quarterly run can leave less than one quarter before objects expire, so monitor the
+workflow and manually rerun it promptly. GitHub can also disable scheduled workflows
+in inactive public repositories.

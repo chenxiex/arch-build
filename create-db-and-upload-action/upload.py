@@ -15,11 +15,14 @@ if ROOT_PATH.startswith("/"):
     ROOT_PATH = ROOT_PATH[1:]
 
 if __name__ == "__main__":
-    r = subprocess.run(
-        ["rclone", "sync", "./", f"{CONFIG_NAME}/{ROOT_PATH}", "-c", "--copy-links"],
-        stderr=subprocess.PIPE,
+    destination = f"{CONFIG_NAME}/{ROOT_PATH}"
+    subprocess.run(
+        ["rclone", "sync", "./", destination, "-c", "--copy-links"],
+        check=True,
     )
-    if r.returncode != 0:
-        print("Failed when syncing to remote")
-        print(r.stderr.decode())
-        exit(0)
+    if os.environ.get("FORCE_REUPLOAD", "false") == "true":
+        subprocess.run(
+            ["rclone", "copy", "./", destination, "--ignore-times", "--copy-links",
+             "--files-from-raw", os.environ["REFRESH_MANIFEST"]],
+            check=True,
+        )

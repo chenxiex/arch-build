@@ -285,6 +285,9 @@ jobs:
         fi
 
   uploadToOneDrive:
+    concurrency:
+      group: package-repository-upload
+      cancel-in-progress: false
     permissions:
       contents: write
     if: >-

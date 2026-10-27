@@ -1,0 +1,145 @@
+name: Quarterly rebuild
+
+on:
+  schedule:
+    - cron: '17 4 1 1,4,7,10 *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/build-aur-action-image
+
+jobs:
+  checkVersion:
+    runs-on: ubuntu-latest
+    outputs:
+      aur_updates: ${{ steps.check.outputs.aur_updates }}
+      nonaur_updates: ${{ steps.check.outputs.nonaur_updates }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install nvchecker
+        run: pip3 install nvchecker
+      - name: Check all configured versions in isolation
+        id: check
+        run: python3 scripts/quarterly_versions.py prepare "$GITHUB_WORKSPACE" "$RUNNER_TEMP/quarterly-versions"
+      - uses: actions/upload-artifact@v6
+        with:
+          name: quarterly-versions
+          path: ${{ runner.temp }}/quarterly-versions/
+          if-no-files-found: error
+
+  buildAUR:
+    needs: checkVersion
+    if: needs.checkVersion.outputs.aur_updates != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        repo: ${{ fromJson(needs.checkVersion.outputs.aur_updates) }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build package
+        env:
+          PACKAGE: ${{ matrix.repo }}
+          SKIP_PGP_CHECK: ${{ vars.SKIP_PGP_CHECK }}
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/workspace" -w /workspace \
+            -e PREINSTALL_PKGS= -e SKIP_PGP_CHECK \
+            "$REGISTRY/$IMAGE_NAME:latest" "$PACKAGE"
+      - uses: actions/upload-artifact@v6
+        with:
+          path: ./*.pkg.*
+          name: build-aur-${{ matrix.repo }}
+          if-no-files-found: error
+
+  buildNonAUR:
+    needs: checkVersion
+    if: needs.checkVersion.outputs.nonaur_updates != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        package: ${{ fromJson(needs.checkVersion.outputs.nonaur_updates) }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build package
+        env:
+          PACKAGE_PATH: ${{ matrix.package.path }}
+          SKIP_PGP_CHECK: ${{ vars.SKIP_PGP_CHECK }}
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/workspace" -w /workspace \
+            -e BUILD_MODE=local -e SKIP_PGP_CHECK \
+            "$REGISTRY/$IMAGE_NAME:latest" "$PACKAGE_PATH"
+      - uses: actions/upload-artifact@v6
+        with:
+          path: ./*.pkg.*
+          name: build-nonaur-${{ matrix.package.name }}
+          if-no-files-found: error
+
+  updateVersion:
+    needs: [checkVersion, buildAUR, buildNonAUR]
+    if: >-
+      ${{ always() && needs.checkVersion.result == 'success' &&
+          (needs.buildAUR.result == 'success' || needs.buildAUR.result == 'skipped') &&
+          (needs.buildNonAUR.result == 'success' || needs.buildNonAUR.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+      - uses: actions/download-artifact@v7
+        with:
+          name: quarterly-versions
+          path: ${{ runner.temp }}/quarterly-versions
+      - name: Install nvchecker
+        run: pip3 install nvchecker
+      - name: Update version records after successful builds
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 scripts/quarterly_versions.py apply "$GITHUB_WORKSPACE" "$RUNNER_TEMP/quarterly-versions" --base "$GITHUB_SHA"
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh version records after quarterly rebuild'
+            git push origin "HEAD:${GITHUB_REF}"
+          fi
+
+  upload:
+    needs: [checkVersion, buildAUR, buildNonAUR, updateVersion]
+    if: >-
+      ${{ always() && needs.updateVersion.result == 'success' &&
+          (needs.buildAUR.result == 'success' || needs.buildNonAUR.result == 'success') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: package-repository-upload
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v7
+        id: download
+        with:
+          pattern: build-*
+      - uses: ./create-db-and-upload-action
+        with:
+          RCLONE_CONFIG_CONTENT: ${{ secrets.RCLONE_CONFIG }}
+          RCLONE_CONFIG_NAME: ${{ secrets.RCLONE_CONFIG_NAME }}
+          dest_path: ${{ vars.REMOTE_PATH }}
+          repo_name: ${{ vars.REPO_NAME }}
+          gpg-privatekey: ${{ secrets.gpg_private_key }}
+          local_path: ${{ steps.download.outputs.download-path }}
+          force_reupload: 'true'
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          commit: ${{ github.ref_name }}
+          tag: packages
+          artifacts: './upload_packages/*'
+          removeArtifacts: true
