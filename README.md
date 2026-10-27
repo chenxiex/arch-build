@@ -108,16 +108,16 @@ July, and October 1. Run it manually from the Actions tab using **Run workflow**
 It checks versions in isolated, empty records and replaces the repository's version
 records only after all builds succeed, removing entries for packages no longer configured.
 
-Every package file produced by the builds, including collected dependency and split
-packages, and its signature are forcibly uploaded to refresh their R2 objects.
-All files under `static/` are also forcibly uploaded during a quarterly rebuild.
-Dependencies not present in build artifacts are not forcibly refreshed. Packages
-copied back from the remote repository reuse their existing signatures and are not
-forcibly refreshed. If a restored package has no signature, one is generated when
-signing is enabled. The existing sync can still delete remote files absent from the
-assembled repository.
+Quarterly uploads use `rebuild: 'true'` on `create-db-and-upload-action`. They generate
+the repository only from the current build artifacts (including collected dependency
+and split packages) and files under `static/`, without downloading or merging remote
+packages. Uploading with `rclone sync` deletes remote files absent from this rebuilt
+repository, so removal of untracked packages does not depend on R2 object expiration.
+Disable any previously configured R2 object expiration rule for this repository;
+unchanged files are no longer forcibly reuploaded to refresh their timestamps.
+An empty rebuild is rejected before uploading.
 
-Configure R2 object expiration separately (for example, 180 days). A failed or missed
-quarterly run can leave less than one quarter before objects expire, so monitor the
-workflow and manually rerun it promptly. GitHub can also disable scheduled workflows
-in inactive public repositories.
+Regular uploads keep the default `rebuild: 'false'` behavior: merge packages from the
+remote repository before syncing, and reuse existing signatures for unchanged
+packages. If a restored package has no signature, one is generated when signing is
+enabled.

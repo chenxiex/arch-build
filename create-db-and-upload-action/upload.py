@@ -20,9 +20,3 @@ if __name__ == "__main__":
         ["rclone", "sync", "./", destination, "-c", "--copy-links"],
         check=True,
     )
-    if os.environ.get("FORCE_REUPLOAD", "false") == "true":
-        subprocess.run(
-            ["rclone", "copy", "./", destination, "--ignore-times", "--copy-links",
-             "--files-from-raw", os.environ["REFRESH_MANIFEST"]],
-            check=True,
-        )

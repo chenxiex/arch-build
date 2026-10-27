@@ -13,8 +13,8 @@ inputs:
     description: 'Your GPG private key, used to sign repo.'
   local_path:
     default: './'
-  force_reupload:
-    description: 'Force reupload of built packages, signatures, and static files'
+  rebuild:
+    description: 'Replace the remote repository with only current build artifacts and static files, without merging remote packages'
     default: 'false'
 runs:
   using: 'docker'
@@ -27,4 +27,4 @@ runs:
     repo_name: ${{ inputs.repo_name }}
     gpg_key: ${{ inputs.gpg-privatekey }}
     local_path: ${{ inputs.local_path }}
-    FORCE_REUPLOAD: ${{ inputs.force_reupload }}
+    REBUILD: ${{ inputs.rebuild }}

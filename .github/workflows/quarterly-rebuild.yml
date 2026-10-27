@@ -135,7 +135,7 @@ jobs:
           repo_name: ${{ vars.REPO_NAME }}
           gpg-privatekey: ${{ secrets.gpg_private_key }}
           local_path: ${{ steps.download.outputs.download-path }}
-          force_reupload: 'true'
+          rebuild: 'true'
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
