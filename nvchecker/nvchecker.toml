@@ -30,3 +30,6 @@ source = "aur"
 
 [claude-code]
 source = "aur"
+
+[antigravity]
+source = "aur"
