@@ -6,11 +6,11 @@
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "chatgpt-desktop": {
-      "version": "26.1021.22027-1",
+      "version": "26.1023.51421-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "claude-code": {
-      "version": "2.1.311-1",
+      "version": "2.1.312-1",
       "url": "https://aur.archlinux.org/packages/claude-code"
     },
     "howdy-git": {
