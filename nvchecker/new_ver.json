@@ -9,10 +9,6 @@
       "version": "26.1027.30824-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
-    "claude-code": {
-      "version": "2.1.316-1",
-      "url": "https://aur.archlinux.org/packages/claude-code"
-    },
     "howdy-git": {
       "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
