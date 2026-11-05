@@ -2,7 +2,7 @@
   "version": 2,
   "data": {
     "antigravity": {
-      "version": "2.28.2-1",
+      "version": "2.29.0-1",
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "chatgpt-desktop": {
@@ -18,7 +18,7 @@
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
     },
     "metacubexd-desktop-bin": {
-      "version": "1.274.3-1",
+      "version": "1.274.4-1",
       "url": "https://aur.archlinux.org/packages/metacubexd-desktop-bin"
     },
     "nvtray-git": {
