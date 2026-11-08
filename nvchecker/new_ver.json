@@ -6,7 +6,7 @@
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "chatgpt-desktop": {
-      "version": "26.1027.51404-1",
+      "version": "26.1103.32239-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "howdy-git": {
@@ -14,7 +14,7 @@
       "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
     },
     "metacubexd-desktop-bin": {
-      "version": "1.274.4-1",
+      "version": "1.274.5-1",
       "url": "https://aur.archlinux.org/packages/metacubexd-desktop-bin"
     },
     "nvtray-git": {
