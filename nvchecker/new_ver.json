@@ -6,12 +6,12 @@
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "chatgpt-desktop": {
-      "version": "26.1106.51428-1",
+      "version": "26.1111.21308-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "howdy-git": {
-      "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
-      "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
+      "version": "d8bba3cf06d35d6a873758bb09aa6e8c47526be1",
+      "revision": "d8bba3cf06d35d6a873758bb09aa6e8c47526be1"
     },
     "metacubexd-desktop-bin": {
       "version": "1.274.5-1",
