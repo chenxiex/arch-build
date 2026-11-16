@@ -7,11 +7,6 @@ source = "git"
 git = "https://github.com/horshack-dpreview/setPL.git"
 use_commit = true
 
-[howdy-git]
-source = "git"
-git = "https://github.com/boltgolt/howdy.git"
-use_commit = true
-
 [steam-devices-git]
 source = "git"
 git = "https://github.com/ValveSoftware/steam-devices.git"
@@ -29,4 +24,7 @@ source = "aur"
 source = "aur"
 
 [antigravity]
+source = "aur"
+
+[biopass-bin]
 source = "aur"
