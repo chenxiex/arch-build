@@ -2,19 +2,19 @@
   "version": 2,
   "data": {
     "antigravity": {
-      "version": "2.29.0-1",
+      "version": "2.32.1-1",
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "chatgpt-desktop": {
-      "version": "26.1027.51404-1",
+      "version": "26.1111.21308-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "howdy-git": {
-      "version": "d3ab99382f88f043d15f15c1450ab69433892a1c",
-      "revision": "d3ab99382f88f043d15f15c1450ab69433892a1c"
+      "version": "94d5dde9a4a847a4d39395b0bd50cc8215146cad",
+      "revision": "94d5dde9a4a847a4d39395b0bd50cc8215146cad"
     },
     "metacubexd-desktop-bin": {
-      "version": "1.274.4-1",
+      "version": "1.274.5-1",
       "url": "https://aur.archlinux.org/packages/metacubexd-desktop-bin"
     },
     "nvtray-git": {
