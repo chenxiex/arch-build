@@ -28,3 +28,6 @@ source = "aur"
 
 [biopass-bin]
 source = "aur"
+
+[cgtproxy]
+source = "aur"
