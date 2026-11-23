@@ -2,7 +2,7 @@
   "version": 2,
   "data": {
     "antigravity": {
-      "version": "2.33.0-1",
+      "version": "2.34.0-1",
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "biopass-bin": {
@@ -12,6 +12,10 @@
     "chatgpt-desktop": {
       "version": "26.1117.41037-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
+    },
+    "graftcp": {
+      "version": "0.9.0-1",
+      "url": "https://aur.archlinux.org/packages/graftcp"
     },
     "metacubexd-desktop-bin": {
       "version": "1.276.0-1",
