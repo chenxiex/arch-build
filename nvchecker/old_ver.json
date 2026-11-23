@@ -2,7 +2,7 @@
   "version": 2,
   "data": {
     "antigravity": {
-      "version": "2.33.0-1",
+      "version": "2.34.0-1",
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "biopass-bin": {
