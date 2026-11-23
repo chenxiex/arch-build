@@ -9,6 +9,10 @@
       "version": "1.5.1-1",
       "url": "https://aur.archlinux.org/packages/biopass-bin"
     },
+    "cgtproxy": {
+      "version": "0.4.0-1",
+      "url": "https://aur.archlinux.org/packages/cgtproxy"
+    },
     "chatgpt-desktop": {
       "version": "26.1117.41037-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
