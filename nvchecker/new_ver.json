@@ -2,19 +2,19 @@
   "version": 2,
   "data": {
     "antigravity": {
-      "version": "2.35.0-1",
+      "version": "2.35.1-1",
       "url": "https://aur.archlinux.org/packages/antigravity"
     },
     "biopass-bin": {
-      "version": "1.5.1-1",
+      "version": "1.6.0-1",
       "url": "https://aur.archlinux.org/packages/biopass-bin"
     },
     "chatgpt-desktop": {
-      "version": "26.1120.41243-1",
+      "version": "26.1120.50957-1",
       "url": "https://aur.archlinux.org/packages/chatgpt-desktop"
     },
     "metacubexd-desktop-bin": {
-      "version": "1.276.0-1",
+      "version": "1.277.0-1",
       "url": "https://aur.archlinux.org/packages/metacubexd-desktop-bin"
     },
     "nvtray-git": {
