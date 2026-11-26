@@ -28,3 +28,6 @@ source = "aur"
 
 [biopass-bin]
 source = "aur"
+
+[antigravity-cli]
+source = "aur"
